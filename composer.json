@@ -1,1 +1,4 @@
-'{}' 
+{
+    "name": "ridgeway/map",
+    "description": "a map of ridgeway"
+}
