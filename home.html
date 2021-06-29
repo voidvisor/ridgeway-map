@@ -11,6 +11,9 @@
         <div id = "map"></div>
         <script>
             var map = L.map('map').setView([0, 0], 1);
+            var imageUrl = 'https://drive.google.com/uc?export=view&id=15n4PUoGko-SRlVWGu3Vy1D5qSrHFa6Ij',
+            imageBounds = [[80.0, -350.0], [-40.0, 400.0]];
+            L.imageOverlay(imageUrl, imageBounds, {opacity: 0.2}).addTo(map);
         </script>
     </body>
 </html>
