@@ -19,8 +19,20 @@
     <body>
         <div id = "map"></div>
         <script>
+            var sattelite;
+            var territory = L.layerGroup();
+            var gas_station = L.layerGroup();
+            var law_enforcement = L.layerGroup();
+            var unused = L.layerGroup();
+            var government = L.layerGroup();
+            var no_interior = L.layerGroup();
+            var mechanic = L.layerGroup();
+            var shop = L.layerGroup();
+            var housing = L.layerGroup();
+            var misc = L.layerGroup();
+            var car_dealer = L.layerGroup();
             var map = L.map('map', {
-                layers: [sattelite, territory, gas_station, law_enforcement, unused, government, no_interior, mechanic, shop, housing, misc, car_dealer]
+                layers: [sattelite, territory, gas_station, law_enforcement, government, mechanic, shop, housing, car_dealer]
             }).setView([0, 0], 1);
             var imageUrl = 'https://drive.google.com/uc?export=view&id=15n4PUoGko-SRlVWGu3Vy1D5qSrHFa6Ij',
             imageBounds = [[90.0, -234.0702211], [-90.0, 234.0702211]];
