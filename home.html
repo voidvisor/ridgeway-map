@@ -19,7 +19,9 @@
     <body>
         <div id = "map"></div>
         <script>
-            var map = L.map('map').setView([0, 0], 1);
+            var map = L.map('map', {
+                maxBounds: [[90.0, -234.0702211], [-90.0, 234.0702211]]
+            }).setView([0, 0], 1);
             var imageUrl = 'https://drive.google.com/uc?export=view&id=15n4PUoGko-SRlVWGu3Vy1D5qSrHFa6Ij',
             imageBounds = [[90.0, -234.0702211], [-90.0, 234.0702211]];
             L.imageOverlay(imageUrl, imageBounds, {
@@ -42,7 +44,7 @@
             L.marker([-81.7, -160]).addTo(map)
                 .bindPopup('<h1>Palmer Tram Station</h1><img src="https://drive.google.com/uc?export=view&id=13MuH5G9Q6pc6uFJ5k5CFKiCdh0XaItbf" width="100%" max-width="300px"><p>A tram goes from here to the Palmer International Airport and back.</p><i>2000 Rucker Ave</i>');
             L.marker([-72.5, -165.5]).addTo(map)
-                .bindPopup('<h1>Government Annex Building</h1><img src="https://drive.google.com/uc?export=view&id=1cl4e-ehFj19tzOdF0fYDx59xlGzOJPII" width="100%" max-width="300px"><p>The Government Annex Building holds 8 offices, a press room and a secure meeting room.</p><i>Not in Property Records</i>');
+                .bindPopup('<h1>Government Annex Building</h1><img src="https://drive.google.com/uc?export=view&id=1cl4e-ehFj19tzOdF0fYDx59xlGzOJPII" width="100%" max-width="300px"><p>The Government Annex Building holds 8 offices, a press room and a secure meeting room.</p>');
             L.marker([-77.5, -154]).addTo(map)
                 .bindPopup('<h1>Palmer Gas Station</h1><img src="https://drive.google.com/uc?export=view&id=1pGa83uFyYa66gSxoNBFtJdEJTE-146d6" width="100%" max-width="300px"><p>Contains 4 pumps and an ATM. One of the three gas stations in Ridgeway County.</p><i>1670 Palmer Blvd</i>');
             L.marker([-77.5, -136.2]).addTo(map)
@@ -67,6 +69,16 @@
                 .bindPopup(`<h1>Palmer Apartments</h1><img src="https://drive.google.com/uc?export=view&id=1e7Npl8J3wurha9cPO5mkkPxcR4e0lkN4" width="100%" max-width="300px"><p>Although marked as a residential property, no apartments can currently be rented here.</p><i>3100 Rucker Ave</i>`);
             L.marker([-80.2, -151.5]).addTo(map)
                 .bindPopup(`<h1>Palmer Condos</h1><img src="https://drive.google.com/uc?export=view&id=1IQc80Tt1U3OE29f8vq8I7v6CXOh3sN-o" width="100%" max-width="300px"><p>Features 4 rentable Condos (1A; 1B; 2A; 2B). Has 3 parking spots for residents.<h2>Housing requires the Housing Gamepass which costs 1000 R$.</h2>The rent for all properties is 4500$ per week. Rent resets at midnight UTC on the day that your rent is due.</p><i>200 Farley St</i>`);
+            L.marker([70, -189]).addTo(map)
+                .bindPopup(`<h1>Ridgeway County Sheriff's Office Substation</h1><img src="https://drive.google.com/uc?export=view&id=1B0yp3YNnURmxPuG1f3ZvO6x0ZVR5uuxq" width="100%" max-width="300px"><p>A substation for the Ridgeway County Sheriff's Office. Rarely used as deputies do not spawn here.</p>`);
+            L.marker([62.5, -207]).addTo(map)
+                .bindPopup(`<h1>Port of Sterling Heights</h1><img src="https://drive.google.com/uc?export=view&id=1xaFXwX6GdZFpxIVYZZI7lWCqncojUdiR" width="100%" max-width="300px"><p>A hub for all import and export of Ridgeway. Rumors say the port is home to a weapons trafficker.</p>`);
+            L.marker([55.5, -187.5]).addTo(map)
+                .bindPopup(`<h1>YOUBUYCARNOW Car Dealership</h1><img src="https://drive.google.com/uc?export=view&id=1LPFNbhwN4uGakVJwMNSuYCysebBlipgv" width="100%" max-width="300px"><p>A second smaller car dealership. Some players may also be spotted here, but they ussually don't stay for long.</p>`);
+            L.marker([59, -187.5]).addTo(map)
+                .bindPopup(`<h1>Ridgeway Credit Union</h1><img src="https://drive.google.com/uc?export=view&id=1OQQiAZuj7ArmcEKLxYXLrqPnnuYgVHq0" width="100%" max-width="300px"><p>Basically a glorified ATM.</p>`);
+            L.marker([59, -187.5]).addTo(map)
+                .bindPopup(`<h1>Ridgeway Credit Union</h1><img src="https://drive.google.com/uc?export=view&id=1OQQiAZuj7ArmcEKLxYXLrqPnnuYgVHq0" width="100%" max-width="300px"><p>Basically a glorified ATM.</p>`);
             L.control.mousePosition().addTo(map);
         </script>
     </body>
