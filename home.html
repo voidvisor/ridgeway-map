@@ -166,6 +166,9 @@
             L.polygon([[71.8, -176.8], [67.6, -176.8], [63.9, -175.8], [57.9, -175.8], [54.9, -176.2], [51.6, -176.2], [51.6, -171.4], [53.8, -163.5], [72.8, -165], [74.5, -164.8], [75.3, -167.8], [75.2, -172.5], [74.5, -175.7], [72.5, -175.7]], {color:"DarkOrchid", opacity: "0.5"})
                 .bindPopup(`<h1>Sterling Residential Zone</h1><p>Has a total of 31 rentable houses.<br><h2>Housing requires the Housing Gamepass which costs 1000 R$.</h2>The rent for all properties is 4500$ per week. Rent resets at midnight UTC on the day that your rent is due.</p>`)
                 .addTo(housing);
+            L.marker([-45, 162.7])
+                .bindPopup(`<h1>Milton Gas Station</h1><img src="https://drive.google.com/uc?export=view&id=1sAjPIYU5HhAnyLra0jTVtidjTb4Zj4i0" width="100%" max-width="300px"><p>Contains 4 pumps and an ATM. One of the four gas stations in Ridgeway County.</p>`)
+                .addTo(gas_station);
             var baseMaps = {
                 "Sattelite": backgroundImage
             };
