@@ -19,7 +19,11 @@
     <body>
         <div id = "map"></div>
         <script>
-            var sattelite;
+            var imageUrl = 'https://drive.google.com/uc?export=view&id=15n4PUoGko-SRlVWGu3Vy1D5qSrHFa6Ij',
+            imageBounds = [[90.0, -234.0702211], [-90.0, 234.0702211]];
+            var backgroundImage = L.imageOverlay(imageUrl, imageBounds, {
+                attribution: '<a href="https://discord.com/invite/ridgeway" target="_blank">Ridgeway</a> Developer Oversight'
+            })
             var territory = L.layerGroup();
             var gas_station = L.layerGroup();
             var law_enforcement = L.layerGroup();
@@ -32,14 +36,8 @@
             var misc = L.layerGroup();
             var car_dealer = L.layerGroup();
             var map = L.map('map', {
-                layers: [sattelite, territory, gas_station, law_enforcement, government, mechanic, shop, housing, car_dealer]
+                layers: [backgroundImage, territory, gas_station, law_enforcement, government, mechanic, shop, housing, car_dealer]
             }).setView([0, 0], 1);
-            var imageUrl = 'https://drive.google.com/uc?export=view&id=15n4PUoGko-SRlVWGu3Vy1D5qSrHFa6Ij',
-            imageBounds = [[90.0, -234.0702211], [-90.0, 234.0702211]];
-            var backgroundImage = L.imageOverlay(imageUrl, imageBounds, {
-                attribution: '<a href="https://discord.com/invite/ridgeway" target="_blank">Ridgeway</a> Developer Oversight'
-            }).addTo(map)
-            .addTo(sattelite);
             L.marker([-73.5, -144]).addTo(map)
                 .bindPopup('<h1>Ridgeway County Hall</h1><img src="https://drive.google.com/uc?export=view&id=1F5GBD9gA1jNKz6tYedo54d437tKW844V" width="100%" max-width="300px"><p>The Ridgway County Hall holds the County Board meeting room and the Ridgeway County Court.</p><i>1 Jackson St</i>')
                 .addTo(government);
@@ -161,7 +159,7 @@
                 .bindPopup(`<h1>Wood Farms</h1><img src="https://drive.google.com/uc?export=view&id=1JoeopnHtvTiN-vHLqWEbNwsO9ZMlWwl_" width="100%" max-width="300px"><p>Private property owned by goodguywood.</p>`)
                 .addTo(territory);
             var baseMaps = {
-                "Sattelite": sattelite
+                "Sattelite": backgroundImage
             };
             var overlayMaps = {
                 "Territories": territory,
