@@ -26,7 +26,8 @@
             var imageUrl = 'https://drive.google.com/uc?export=view&id=15n4PUoGko-SRlVWGu3Vy1D5qSrHFa6Ij',
             imageBounds = [[90.0, -234.0702211], [-90.0, 234.0702211]];
             var backgroundImage = L.imageOverlay(imageUrl, imageBounds, {
-                attribution: '<a href="https://discord.com/invite/ridgeway" target="_blank">Ridgeway</a> Developer Oversight'
+                attribution: '<a href="https://discord.com/invite/ridgeway" target="_blank">Ridgeway</a> Developer Oversight',
+                pane: 'tilePane'
             })
             var territory = L.layerGroup();
             var gas_station = L.layerGroup();
