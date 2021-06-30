@@ -38,124 +38,124 @@
             var map = L.map('map', {
                 layers: [backgroundImage, territory, gas_station, law_enforcement, government, mechanic, shop, housing, car_dealer]
             }).setView([0, 0], 1);
-            L.marker([-73.5, -144]).addTo(map)
+            L.marker([-73.5, -144])
                 .bindPopup('<h1>Ridgeway County Hall</h1><img src="https://drive.google.com/uc?export=view&id=1F5GBD9gA1jNKz6tYedo54d437tKW844V" width="100%" max-width="300px"><p>The Ridgway County Hall holds the County Board meeting room and the Ridgeway County Court.</p><i>1 Jackson St</i>')
                 .addTo(government);
-            L.marker([-79.5, -162.5]).addTo(map)
+            L.marker([-79.5, -162.5])
                 .bindPopup('<h1>Palmer Police Department Headquarters</h1><img src="https://drive.google.com/uc?export=view&id=1D0aVCx9byVyOQAkehJmrMdX3i-RLzHg_" width="100%" max-width="300px"><p>The Palmer Police Department Headquarters hold multiple offices, a court room and facilities for the Palmer Police Department. You can come here to search arrest and citation records as well as pay off your citations. Note that if you do not pay your citation within 30 minutes will result in an arrest warrant being issued for you.</p><i>2200 Laguna Ave</i>')
                 .addTo(law_enforcement);
-            L.marker([-80.6, -175]).addTo(map)
+            L.marker([-80.6, -175])
                 .bindPopup('<h1>Ridgeway County Transit Authority Terminal</h1><img src="https://drive.google.com/uc?export=view&id=1pBefkaQL4k-GoSq02zixn7tG6Vng2yzy" width="100%" max-width="300px"><p>The Ridgeway County Trasnit Authority Terminal holds offices and a big garage. Behind the terminal is a Bus Station.</p><i>1000 Stokes St</i>')
                 .addTo(government);
-            L.marker([-79.4, -151.2]).addTo(map)
+            L.marker([-79.4, -151.2])
                 .bindPopup('<h1>Ridgeway National Guard Recruitment Office</h1><img src="https://drive.google.com/uc?export=view&id=1f1Ab-zHVPokwt4NoWJG4CQnSQzEjvxmW" width="100%" max-width="300px"><p>The Ridgeway National Guard Recruitment Office is the place you can go to get answers to questions about the National Guard. It is often guarded by the Ridgeway National Guard.</p><i>110 Farley St</i>')
                 .addTo(government);
-            L.marker([-73.8, -152.5]).addTo(map)
+            L.marker([-73.8, -152.5])
                 .bindPopup('<h1>Ridgeway County Fire Station</h1><img src="https://drive.google.com/uc?export=view&id=1iaDHOZNyu4EGpsnqyRaeLbTFlBDko4qV" width="100%" max-width="300px"><p>A building that is currently unused. Rumored to contain the Ridgeway County Fire Department in the future.</p><i>2281 Laguna Ave</i>')
                 .addTo(unused);
-            L.marker([-72.3, -152]).addTo(map)
+            L.marker([-72.3, -152])
                 .bindPopup('<h1>Palmer City Community Park</h1><img src="https://drive.google.com/uc?export=view&id=15Sl4L3eLQ4-kAFRHSky0Ai1Q_NxPrjx2" width="100%" max-width="300px"><p>The only city park in the county with 3 picnic tables. Legend has it you can see the Ridgeway Park Service patrolling near here.</p><i>1181 Lakeside Dr</i>')
                 .addTo(misc)
-            L.marker([-68.5, -71]).addTo(map)
+            L.marker([-68.5, -71])
                 .bindPopup('<h1>Palmer International Airport</h1><img src="https://drive.google.com/uc?export=view&id=1HXBhBLKybP3bI5E_dQLp7_ohS_a3BZZ3" width="100%" max-width="300px"><p>Airport is currently not functional. The airport has a large parking lot and a tram station as well as pickup spots for busses, rideshare and taxis.</p><i>8190 Airport Rd</i>')
                 .addTo(no_interior);
-            L.marker([-81.7, -160]).addTo(map)
+            L.marker([-81.7, -160])
                 .bindPopup('<h1>Palmer Tram Station</h1><img src="https://drive.google.com/uc?export=view&id=13MuH5G9Q6pc6uFJ5k5CFKiCdh0XaItbf" width="100%" max-width="300px"><p>A tram goes from here to the Palmer International Airport and back.</p><i>2000 Rucker Ave</i>')
                 .addTo(misc);
-            L.marker([-72.5, -165.5]).addTo(map)
+            L.marker([-72.5, -165.5])
                 .bindPopup('<h1>Government Annex Building</h1><img src="https://drive.google.com/uc?export=view&id=1cl4e-ehFj19tzOdF0fYDx59xlGzOJPII" width="100%" max-width="300px"><p>The Government Annex Building holds 8 offices, a press room and a secure meeting room.</p>')
                 .addTo(government);
-            L.marker([-77.5, -154]).addTo(map)
+            L.marker([-77.5, -154])
                 .bindPopup('<h1>Palmer Gas Station - Bloxx</h1><img src="https://drive.google.com/uc?export=view&id=1pGa83uFyYa66gSxoNBFtJdEJTE-146d6" width="100%" max-width="300px"><p>Contains 4 pumps and an ATM. One of the four gas stations in Ridgeway County.</p><i>1670 Palmer Blvd</i>')
                 .addTo(gas_station)
-            L.marker([-77.5, -136.2]).addTo(map)
+            L.marker([-77.5, -136.2])
                 .bindPopup(`<h1>Pizza Shack</h1><img src="https://drive.google.com/uc?export=view&id=115pQ6zaeVFZ88ZngELOBGeG1fCYqnj2B" width="100%" max-width="300px"><p>Don't get some pizzas and hang out with your friends.</p><i>1105 Jackson St</i>`)
                 .addTo(unused);
-            L.marker([-77.5, -177]).addTo(map)
+            L.marker([-77.5, -177])
                 .bindPopup(`<h1>Walter's</h1><img src="https://drive.google.com/uc?export=view&id=1WGIgXlrvwFjqzkqw8yOv51kxvp7jSRqH" width="100%" max-width="300px"><p>Don't get some Walter's and hang out with your friends.</p><i>923 Rucker Ave</i>`)
                 .addTo(unused);
-            L.marker([-77.5, -165.5]).addTo(map)
+            L.marker([-77.5, -165.5])
                 .bindPopup(`<h1>Palmer Parking Garage</h1><img src="https://drive.google.com/uc?export=view&id=1TIN5rUEQrc1lKyUjGcmtTc1CTZy_vpcX" width="100%" max-width="300px"><p>5 storey parking garage. Don't worry about free space.</p><i>1720 Laguna Ave</i>`)
                 .addTo(misc);
-            L.marker([-80, -138]).addTo(map)
+            L.marker([-80, -138])
                 .bindPopup(`<h1>Palmer Car Dealership</h1><img src="https://drive.google.com/uc?export=view&id=1U9R_gthF4E1J70uFhAVgfozz-TVyphEK" width="100%" max-width="300px"><p>Biggest car dealership in the game. You can expect to see players roaming around this area.</p><i>1050 Palmer Blvd</i>`)
                 .addTo(car_dealer);
-            L.marker([-80.5, -165]).addTo(map)
+            L.marker([-80.5, -165])
                 .bindPopup(`<h1>Palmer Strip Mall</h1><img src="https://drive.google.com/uc?export=view&id=1sUHcmHeCq1caRkSTm6aprUmN5g3k5yOc" width="100%" max-width="300px"><p>A currently abandoed strip mall that contains 3 suites.</p><i>2721 Laguna Ave</i>`)
                 .addTo(unused);
-            L.marker([-77.2, -146.5]).addTo(map)
+            L.marker([-77.2, -146.5])
                 .bindPopup(`<h1>Bloxmart</h1><img src="https://drive.google.com/uc?export=view&id=1HcPq8LB3HWwVW8gHs6XOodle47Mo01qj" width="100%" max-width="300px"><p>Biggest shop in the game, the only place to obtain the protest sign.<br><b>Salvo</b> - 315$<br><b>Salvo Snub</b> - 345$<br><b>Cline 911</b> - 625$<br><b>Bat</b> - 89$<br><b>Stetson M1</b> - 985$<br><b>Barrage 1014</b> - 915$<br><b>Flashlight</b> - 25$<br><b>Sign</b> - 50$<br><b>9mm Ammo</b> - 70$<br><b>5.56 Ammo</b> - 100$<br><b>Shell Ammo</b> - 90$</p><i>1200 Palmer Blvd</i>`)
                 .addTo(shop);
-            L.marker([-80.5, -170]).addTo(map)
+            L.marker([-80.5, -170])
                 .bindPopup(`<h1>RBX Pharmacy</h1><img src="https://drive.google.com/uc?export=view&id=14lCn1ETwDko5uYKcgOAsd5K38tJPe_wn" width="100%" max-width="300px"><p>An exterior of a pharmacy with a parking lot in the front and a loading bay in the back.</p><i>889 Palmer Blvd</i>`)
                 .addTo(no_interior)
-            L.marker([-73.5, -178]).addTo(map)
+            L.marker([-73.5, -178])
                 .bindPopup(`<h1>Ridgeway County Electric Plant</h1><img src="https://drive.google.com/uc?export=view&id=1RKMM8LX6WhO5YVs_E0Bu3azUMC5OozP_" width="100%" max-width="300px"><p>The only source of electricity for the County.</p><i>1389 Lakeside Dr</i>`)
                 .addTo(unused);
-            L.marker([-79.3, -154.4]).addTo(map)
+            L.marker([-79.3, -154.4])
                 .bindPopup(`<h1>Palmer Mechanic Shop</h1><img src="https://drive.google.com/uc?export=view&id=1IvJ6baC5dbrZotURJw3xSiT_EO7UMdcr" width="100%" max-width="300px"><p>One of the two mechanic shops in the County. Features 2 bays and an ATM out front.</p><i>___ Laguna Ave</i>`)
                 .addTo(mechanic)
-            L.marker([-81.2, -116]).addTo(map)
+            L.marker([-81.2, -116])
                 .bindPopup(`<h1>Palmer Apartments</h1><img src="https://drive.google.com/uc?export=view&id=1e7Npl8J3wurha9cPO5mkkPxcR4e0lkN4" width="100%" max-width="300px"><p>Although marked as a residential property, no apartments can currently be rented here.</p><i>3100 Rucker Ave</i>`)
                 .addTo(housing);
-            L.marker([-80.2, -151.5]).addTo(map)
+            L.marker([-80.2, -151.5])
                 .bindPopup(`<h1>Palmer Condos</h1><img src="https://drive.google.com/uc?export=view&id=1IQc80Tt1U3OE29f8vq8I7v6CXOh3sN-o" width="100%" max-width="300px"><p>Features 4 rentable Condos (1A; 1B; 2A; 2B). Has 3 parking spots for residents.<h2>Housing requires the Housing Gamepass which costs 1000 R$.</h2>The rent for all properties is 4500$ per week. Rent resets at midnight UTC on the day that your rent is due.</p><i>200 Farley St</i>`)
                 .addTo(no_interior);
-            L.marker([70, -189]).addTo(map)
+            L.marker([70, -189])
                 .bindPopup(`<h1>Ridgeway County Sheriff's Office Substation</h1><img src="https://drive.google.com/uc?export=view&id=1B0yp3YNnURmxPuG1f3ZvO6x0ZVR5uuxq" width="100%" max-width="300px"><p>A substation for the Ridgeway County Sheriff's Office. Rarely used as deputies do not spawn here. You can come here to search arrest and citation records as well as pay off your citations. Note that if you do not pay your citation within 30 minutes will result in an arrest warrant being issued for you.</p>`)
                 .addTo(law_enforcement);
-            L.marker([62.5, -207]).addTo(map)
+            L.marker([62.5, -207])
                 .bindPopup(`<h1>Port of Sterling Heights</h1><img src="https://drive.google.com/uc?export=view&id=1xaFXwX6GdZFpxIVYZZI7lWCqncojUdiR" width="100%" max-width="300px"><p>A hub for all import and export of Ridgeway. Rumors say the port is home to a weapons trafficker.</p>`)
                 .addTo(government);
-            L.marker([55.5, -187.5]).addTo(map)
+            L.marker([55.5, -187.5])
                 .bindPopup(`<h1>YOUBUYCARNOW Car Dealership</h1><img src="https://drive.google.com/uc?export=view&id=1LPFNbhwN4uGakVJwMNSuYCysebBlipgv" width="100%" max-width="300px"><p>A second smaller car dealership. Some players may also be spotted here, but they ussually don't stay for long.</p>`)
                 .addTo(car_dealer);
-            L.marker([59, -187.5]).addTo(map)
+            L.marker([59, -187.5])
                 .bindPopup(`<h1>Ridgeway Credit Union</h1><img src="https://drive.google.com/uc?export=view&id=1OQQiAZuj7ArmcEKLxYXLrqPnnuYgVHq0" width="100%" max-width="300px"><p>Basically a glorified ATM.</p>`)
                 .addTo(misc);
-            L.marker([61, -179]).addTo(map)
+            L.marker([61, -179])
                 .bindPopup(`<h1>Sterling Heights Public School</h1><img src="https://drive.google.com/uc?export=view&id=1xuI1RNpKPE94ub3AhBYRxposHEp6hSaD" width="100%" max-width="300px"><p>If only the residents of Ridgeway could get education here.</p>`)
                 .addTo(no_interior);
-            L.marker([62.3, -186.5]).addTo(map)
+            L.marker([62.3, -186.5])
                 .bindPopup(`<h1>Discount Furniture | Mattresses</h1><img src="https://drive.google.com/uc?export=view&id=1rzHflrQZQr2zXbdX5vrT9JaNVCKldBWU" width="100%" max-width="300px"><p>This furniture store offers instant delivery right inside of your home.</p>`)
                 .addTo(unused);
-            L.marker([71, -181]).addTo(map)
+            L.marker([71, -181])
                 .bindPopup(`<h1>Sterling Gas Station - 365 Kwik Pump</h1><img src="https://drive.google.com/uc?export=view&id=1IB2LwuUYMl3Jkqah2_G1OR-gax7lYIbR" width="100%" max-width="300px"><p>Contains 4 pumps and an ATM. One of the four gas stations in Ridgeway County.</p>`)
                 .addTo(gas_station);
-            L.marker([66.9, -187]).addTo(map)
+            L.marker([66.9, -187])
                 .bindPopup(`<h1>Sterling Gun Club</h1><img src="https://drive.google.com/uc?export=view&id=1UCfTYrOFL7b-5F8kOMuZbMs9umKe4hXM" width="100%" max-width="300px"><p>The only place to purchase the Firearms License, which costs 1000$.<br><b>Salvo</b> - 295$<br><b>Salvo Snub</b> - 315$<br><b>Cline 911</b> - 590$<br><b>Bat</b> - 70$<br><b>Stetson M1</b> - 1050$<br><b>Barrage 1014</b> - 850$<br><b>9mm Ammo</b> - 65$<br><b>5.56 Ammo</b> - 95$<br><b>Shell Ammo</b> - 85$</p>`)
                 .addTo(shop);
-            L.marker([64.3, -180.5]).addTo(map)
+            L.marker([64.3, -180.5])
                 .bindPopup(`<h1>Sterling Heights Bar</h1><img src="https://drive.google.com/uc?export=view&id=1DGEbEQ6VZ58THpsDYoJemaogslgCxRoN" width="100%" max-width="300px"><p>Come and don't have a drink with your mates.</p>`)
                 .addTo(unused);
-            L.marker([67, -180.8]).addTo(map)
+            L.marker([67, -180.8])
                 .bindPopup(`<h1>Rafael's Auto Care</h1><img src="https://drive.google.com/uc?export=view&id=1cl7lYwHl9z535ZwPQVqPgktmDp8zdaaM" width="100%" max-width="300px"><p>One of the two mechanic shops in the County. Features 2 bays, an ATM out front and a parking lot out back.</p>`)
                 .addTo(mechanic);
-            L.marker([69.75, -181.8]).addTo(map)
+            L.marker([69.75, -181.8])
                 .bindPopup(`<h1>Tom's Fresh Fades</h1><img src="https://drive.google.com/uc?export=view&id=1Gkb-TGVdbp3zZhoT-xkWvwQPPuMMMUm_" width="100%" max-width="300px"><p>Haircuts only available to individuals employed by the government in their respective locker rooms.</p>`)
                 .addTo(unused);
-            L.marker([-32.5, -141.5]).addTo(map)
+            L.marker([-32.5, -141.5])
                 .bindPopup(`<h1>Ridgeway County Sheriff's Office Headquarters</h1><img src="https://drive.google.com/uc?export=view&id=1YAf2hPW9CzctQv5hkqJwcTwdRD0TEvy8" width="100%" max-width="300px"><p>The Ridgeway Sheriff's Department Headquarters are home to the County Jail where criminals get sent to after being arrested. If you're lucky you'll be able to visit your friends in jail, or if you're on the other side of the bars, go out and perform community service. You can come here to search arrest and citation records as well as pay off your citations. Note that if you do not pay your citation within 30 minutes will result in an arrest warrant being issued for you.</p>`)
                 .addTo(law_enforcement);
-            L.marker([48.5, -108.5]).addTo(map)
+            L.marker([48.5, -108.5])
                 .bindPopup(`<h1>Ridgeway National Guard Base</h1><img src="https://drive.google.com/uc?export=view&id=1R_awIkIgE0QaXvnh-gOnuK6EzFdB8Ewb" width="100%" max-width="300px"><p>The Ridgeway National Guard base features a main administrative building with it's own brig, barracks for guardsmen and a shooting range. The National Guard peforms tranings here. Civilians report seeing a long green object taking off from the base on the 28th of June 2021.</p>`)
                 .addTo(government);
-            L.polygon([[74.4, -49], [74, -53.8], [73.2, -57], [71.2, -65.8], [68.4, -71.2], [61.8, -76.3], [55.2, -78.1], [44.7, -74], [38.1, -68.1], [35.5, -67.5], [12.5, -67], [13, -58], [14.4, -53.8], [7.2, -40.5], [4.5, -26.5], [5, -15.5], [18.6, 21], [31.5, 19], [56.8, 19], [60.5, 17.5], [65, 13], [68, 7.5], [72, -4.4], [73.5, -13], [74.7, -33]], {color: "green", opacity: "0.5"}).addTo(map)
+            L.polygon([[74.4, -49], [74, -53.8], [73.2, -57], [71.2, -65.8], [68.4, -71.2], [61.8, -76.3], [55.2, -78.1], [44.7, -74], [38.1, -68.1], [35.5, -67.5], [12.5, -67], [13, -58], [14.4, -53.8], [7.2, -40.5], [4.5, -26.5], [5, -15.5], [18.6, 21], [31.5, 19], [56.8, 19], [60.5, 17.5], [65, 13], [68, 7.5], [72, -4.4], [73.5, -13], [74.7, -33]], {color: "green", opacity: "0.5"})
                 .bindPopup(`<h1>Alder Mountain County Park</h1><img src="https://drive.google.com/uc?export=view&id=1AJk5BovXIpwiJ7liaAsuJS66iCD1LvFW" width="100%" max-width="300px"><p>The Alder Mountain County Park is home to 4 small waterfalls, Alder Mountain and Alder Lake.</p>`)
                 .addTo(territory);
-            L.marker([33.4, 145]).addTo(map)
+            L.marker([33.4, 145])
                 .bindPopup(`<h1>Ridgeway Park Service Ranger Station</h1><img src="https://drive.google.com/uc?export=view&id=1GH0YqkoOyRTEzHc-akVebxha6tqQKdhb" width="100%" max-width="300px"><p>Home to the tree huggers. The Ranger station has one floor above ground and one floor below.<br>The prices at the Ridgeway County Parks Visitor Center are as follows:<br><b>Salvo</b> - 295$<br><b>Cline 911</b> - 670$<br><b>Bat</b> - 79$<br><b>Stetson M1</b> - 965$<br><b>Wesler</b> - 795$<br><b>Flashlight</b> - 25$<br><b>9mm Ammo</b> - 60$<br><b>5.56 Ammo</b> - 90$<br><b>Shell Ammo</b> - 80$<br>You can come here to search arrest and citation records as well as pay off your citations. Note that if you do not pay your citation within 30 minutes will result in an arrest warrant being issued for you.</p><i>GOD SAVE THE WESLER</i>`)
                 .addTo(law_enforcement)
-            L.marker([35.5, 142.5]).addTo(map)
+            L.marker([35.5, 142.5])
                 .bindPopup(`<h1>Ridgeway County Parks Visitor Center</h1><img src="https://drive.google.com/uc?export=view&id=1GH0YqkoOyRTEzHc-akVebxha6tqQKdhb" width="100%" max-width="300px"><p><b>Salvo</b> - 295$<br><b>Cline 911</b> - 670$<br><b>Bat</b> - 79$<br><b>Stetson M1</b> - 965$<br><b>Wesler</b> - 795$<br><b>Flashlight</b> - 25$<br><b>9mm Ammo</b> - 60$<br><b>5.56 Ammo</b> - 90$<br><b>Shell Ammo</b> - 80$</p>`)
                 .addTo(shop)
-            L.marker([69.5, -5]).addTo(map)
+            L.marker([69.5, -5])
                 .bindPopup(`<h1>Ridgeway State Police Substation</h1><img src="https://drive.google.com/uc?export=view&id=1LFmoVJU3VeT1uxC1wAKZkQIgOeHImRkm" width="100%" max-width="300px"><p>A State Police substation with one floor, some offices, a meeting room, garage... Yeah, it's just a police station. You can come here to search arrest and citation records as well as pay off your citations. Note that if you do not pay your citation within 30 minutes will result in an arrest warrant being issued for you.</p>`)
                 .addTo(law_enforcement);
-            L.marker([-21.5, -86.5]).addTo(map)
+            L.marker([-21.5, -86.5])
                 .bindPopup(`<h1>Oakland Park Gas Station - Bloxx</h1><img src="https://drive.google.com/uc?export=view&id=1RQVAJsmJLFT4efpQbcCvc-tFxpCbZ-1a" width="100%" max-width="300px"><p>Contains 4 pumps and an ATM. One of the four gas stations in Ridgeway County.</p>`)
                 .addTo(gas_station);
-            L.polygon([[58.8, 20.5], [44.3, 21], [44.6, 39], [46.5, 44.5], [48.5, 48], [53, 51.5], [56, 51.5], [62.8, 51.5], [64.7, 46.7], [69, 23.2], [68.8, 17], [66.3, 13.5], [60.4, 19]], {color: "pink", opacity: "0.5"}).addTo(map)
+            L.polygon([[58.8, 20.5], [44.3, 21], [44.6, 39], [46.5, 44.5], [48.5, 48], [53, 51.5], [56, 51.5], [62.8, 51.5], [64.7, 46.7], [69, 23.2], [68.8, 17], [66.3, 13.5], [60.4, 19]], {color: "pink", opacity: "0.5"})
                 .bindPopup(`<h1>Wood Farms</h1><img src="https://drive.google.com/uc?export=view&id=1JoeopnHtvTiN-vHLqWEbNwsO9ZMlWwl_" width="100%" max-width="300px"><p>Private property owned by goodguywood.</p>`)
                 .addTo(territory);
             var baseMaps = {
