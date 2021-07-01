@@ -163,12 +163,9 @@
             L.polygon([[58.8, 20.5], [44.3, 21], [44.6, 39], [46.5, 44.5], [48.5, 48], [53, 51.5], [56, 51.5], [62.8, 51.5], [64.7, 46.7], [69, 23.2], [68.8, 17], [66.3, 13.5], [60.4, 19]], {color: "pink", opacity: "0.5"})
                 .bindPopup(`<h1>Wood Farms</h1><img src="https://drive.google.com/uc?export=view&id=1JoeopnHtvTiN-vHLqWEbNwsO9ZMlWwl_" width="100%" max-width="300px"><p>Private property owned by goodguywood.</p>`)
                 .addTo(territory);
-            L.polygon([[71.8, -176.8], [67.6, -176.8], [63.9, -175.8], [57.9, -175.8], [54.9, -176.2], [51.6, -176.2], [51.6, -171.4], [53.8, -163.5], [72.8, -165], [74.5, -164.8], [75.3, -167.8], [75.2, -172.5], [74.5, -175.7], [72.5, -175.7]], {color:"DarkOrchid", opacity: "0.5"})
+            L.polygon([[71.8, -176.8], [67.6, -176.8], [63.9, -175.8], [57.9, -175.8], [54.9, -176.2], [51.6, -176.2], [51.6, -171.4], [53.8, -163.5], [72.8, -165], [74.5, -164.8], [75.3, -167.8], [75.2, -172.5], [74.5, -175.7], [72.5, -175.7]], {color:"DarkOrchid", opacity: "0.5", pane: "markerPane"})
                 .bindPopup(`<h1>Sterling Residential Zone</h1><p>Has a total of 31 rentable houses.<br><h2>Housing requires the Housing Gamepass which costs 1000 R$.</h2>The rent for all properties is 4500$ per week. Rent resets at midnight UTC on the day that your rent is due.</p>`)
                 .addTo(housing);
-            L.polygon([[29.5, -159.5], [40.2, -159.3], [47.3, -162.9], [59.8, -153.2], [69, -150.2], [76.5, -149.8], [76.5, -66], [77.6, -66], [77.6, -150.6], [80.7, -154.3], [81.4, -157.5], [81.8, -165.8], [81.7, -179.7], [81.3, -180.2], [81.1, -182.6], [81.4, -186.8], [81.8, -189], [81.9, -195.3], [81.4, -201.3], [80.4, -205.2], [78.9, -206.9], [77.8, -209.7], [75.1, -210], [73.7, -208.9], [72.8, -206.8], [72.4, -206.6], [72.4, -213.5], [48.4, -213.5], [48.4, -206.8], [46.9, -207.9], [45, -210.1], [42.7, -210.1], [31, -204.3], [25.9, -201], [27.7, -191.7]], {color: "DarkViolet", opacity: "0.5"})
-                .bindPopup(`<h1>Sterling Heights</h1><p>A city with a hisory of being home to criminals.</p>`)
-                .addTo(territory);
             L.marker([-45, 162.7])
                 .bindPopup(`<h1>Milton Gas Station</h1><img src="https://drive.google.com/uc?export=view&id=1sAjPIYU5HhAnyLra0jTVtidjTb4Zj4i0" width="100%" max-width="300px"><p>Contains 4 pumps and an ATM. One of the four gas stations in Ridgeway County.</p>`)
                 .addTo(gas_station);
@@ -181,6 +178,9 @@
                 .addTo(territory);
             L.polygon([[30.7, -129.2], [31.2, -117.2], [33.6, -105.7], [37.8, -93], [43.1, -82.7], [49.7, -75.9], [63.2, -85.6], [68.1, -97.6], [67.3, -110.6], [65.6, -121.3], [61.8, -130.2], [57.8, -135.5], [49.2, -137], [39.7, -130.2]], {color: "red", opacity: "0.5"})
                 .bindPopup(`<h1>Military Exclusion Zone</h1><p>The Military exclusion zone is home to the Ridgeway National Guard Base.<br><b>Civillians must keep on the paved road, not drive faster than 50 SPS and slower than 30 SPS.</b></p>`)
+                .addTo(territory);
+            L.polygon([[29.5, -159.5], [40.2, -159.3], [47.3, -162.9], [59.8, -153.2], [69, -150.2], [76.8, -149.8], [76.8, -66], [77.6, -66], [77.6, -150.6], [80.7, -154.3], [81.4, -157.5], [81.8, -165.8], [81.7, -179.7], [81.3, -180.2], [81.1, -182.6], [81.4, -186.8], [81.8, -189], [81.9, -195.3], [81.4, -201.3], [80.4, -205.2], [78.9, -206.9], [77.8, -209.7], [75.1, -210], [73.7, -208.9], [72.8, -206.8], [72.4, -206.6], [72.4, -213.5], [48.4, -213.5], [48.4, -206.8], [46.9, -207.9], [45, -210.1], [42.7, -210.1], [31, -204.3], [25.9, -201], [27.7, -191.7]], {color: "DarkViolet", opacity: "0.5"})
+                .bindPopup(`<h1>Sterling Heights</h1><p>A city with a hisory of being home to criminals.</p>`)
                 .addTo(territory);
             var baseMaps = {
                 "Sattelite": backgroundImage
