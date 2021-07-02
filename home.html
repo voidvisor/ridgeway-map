@@ -40,6 +40,7 @@
             var housing = L.layerGroup();
             var misc = L.layerGroup();
             var car_dealer = L.layerGroup();
+            var money_machine = L.layerGroup();
             var map = L.map('map', {
                 layers: [backgroundImage, territory, gas_station, mechanic, shop, housing, car_dealer]
             }).setView([0, 0], 1);
@@ -114,7 +115,7 @@
                 .addTo(car_dealer);
             L.marker([59, -187.5])
                 .bindPopup(`<h1>Ridgeway Credit Union</h1><img src="https://drive.google.com/uc?export=view&id=1OQQiAZuj7ArmcEKLxYXLrqPnnuYgVHq0" width="100%" max-width="300px"><p>Basically a glorified ATM.</p>`)
-                .addTo(misc);
+                .addTo(money_machine);
             L.marker([61, -179])
                 .bindPopup(`<h1>Sterling Heights Public School</h1><img src="https://drive.google.com/uc?export=view&id=1xuI1RNpKPE94ub3AhBYRxposHEp6hSaD" width="100%" max-width="300px"><p>If only the residents of Ridgeway could get education here.</p>`)
                 .addTo(no_interior);
@@ -184,16 +185,59 @@
             L.polygon([[-72.4, -102.3], [-71.9, -100.8], [-71.6, -100.2], [-71.5,-97], [-71.7, -94.8], [-71.7, -89.3], [-72.7, -87.1], [-73.2, -83.5], [-72.6, -76.6], [-71.3, -73.8], [-71.6, -72.6], [-71.5, -70.9], [-71.3, -68.9], [-72, -67], [-72, -66.1], [-72, -65], [-72.3, -64.5], [-72.3, -63.1], [-72.5, -62.5], [-76.8, -62.6], [-78.4, -63.3], [-78.9, -62.9], [-79.7, -59.9], [-79.7, -56.2], [-79.9, -50.8], [-79.8, -49.3], [-79.8, -44.6], [-79.75, -42.9,], [-79.65, -42.1], [-79.3, -41.6], [-77, -40.2], [-74.5, -39.7], [-71.6, -40.3], [-70.6, -38.7], [-70.2, -38.7], [-68.2, -40.8], [-65.8, -40.3], [-59.9, -40.6], [-58.6, -41.1], [-57.8, -40.5], [-56.5, -40.5], [-51.9, -42], [-50.2, -51.2], [-49.8, -51.5], [-50, -54.5], [-51.5, -60], [-52.5, -61.8], [-55.3, -62.6], [-56.3, -62.7], [-58.9, -61.9], [-59.8, -61.2], [-63.7, -61], [-64.4, -60.7], [-64.6, -61.3], [-64.4, -64], [-63.6, -65.2], [-63.2, -67], [-63.2, -67.6], [-63.5, -68.6], [-63.3, -74], [-62.6, -77.7], [-62.4, -82], [-62.8, -87.8], [-62.4, -91.1], [-61.7, -91.5], [-60.9, -94.3], [-59.4, -94.4], [-58.3, -95.5], [-55.6, -95.8], [-54.4, -97.1], [-52.4, -97.5], [-66.3, -101.7]], {color: "yellow", opacity: "0.5"})
                 .bindPopup(`<h1>Palmer International Airport</h1><img src="https://drive.google.com/uc?export=view&id=1HXBhBLKybP3bI5E_dQLp7_ohS_a3BZZ3" width="100%" max-width="300px"><p>Airport is currently not functional. The airport has a large parking lot and a tram station as well as pickup spots for busses, rideshare and taxis.</p><i>8190 Airport Rd</i>`)
                 .addTo(territory);
+            L.marker([-77.8, -137.2])
+                .bindPopup(`<h1>Pizza Shack ATM</h1><img src="https://drive.google.com/uc?export=view&id=1ySngtm9QCt6PZv7k63txE6eqO4z-AprC" width="100%" max-width="300px"><p>An Automatic Teller Machine that allows you to deposit, withdraw and transfer money. <b>You can not transfer less than 50$ to another player.</b></p>`)
+                .addTo(money_machine);
+            L.marker([-79.7, -139.6])
+                .bindPopup(`<h1>Palmer Car Dealership ATM</h1><img src="https://drive.google.com/uc?export=view&id=1KDpwJGvqhL6de7yxsPIoKoH1w_8xfnRh" width="100%" max-width="300px"><p>An Automatic Teller Machine that allows you to deposit, withdraw and transfer money. <b>You can not transfer less than 50$ to another player.</b></p>`)
+                .addTo(money_machine);
+            L.marker([-77.4, -147.8])
+                .bindPopup(`<h1>Bloxmart ATM</h1><img src="https://drive.google.com/uc?export=view&id=1ncNaDO3WBHN3iy14_-2_gvRHmiznqGMX" width="100%" max-width="300px"><p>An Automatic Teller Machine that allows you to deposit, withdraw and transfer money. <b>You can not transfer less than 50$ to another player.</b></p>`)
+                .addTo(money_machine);
+            L.marker([-77.3, -154.3])
+                .bindPopup(`<h1>Palmer Gas Station ATM</h1><img src="https://drive.google.com/uc?export=view&id=1FVqCuRrYe6tU5pY9D3PEuHq4-Ykbl_Cw" width="100%" max-width="300px"><p>An Automatic Teller Machine that allows you to deposit, withdraw and transfer money. <b>You can not transfer less than 50$ to another player.</b></p>`)
+                .addTo(money_machine);
+            L.marker([-77.74, -178.6])
+                .bindPopup(`<h1>Walter's ATM</h1><img src="https://drive.google.com/uc?export=view&id=1zEtp-qaTTw6JEwUWUnnN2EQzD8u5nPkg" width="100%" max-width="300px"><p>An Automatic Teller Machine that allows you to deposit, withdraw and transfer money. <b>You can not transfer less than 50$ to another player.</b></p>`)
+                .addTo(money_machine);
+            L.marker([-20, -87.9])
+                .bindPopup(`<h1>Oakland Park Gas Station ATM</h1><img src="https://drive.google.com/uc?export=view&id=1REWYo6-NUYnz5jWjfYDwFksKlCNDP9eS" width="100%" max-width="300px"><p>An Automatic Teller Machine that allows you to deposit, withdraw and transfer money. <b>You can not transfer less than 50$ to another player.</b></p>`)
+                .addTo(money_machine);
+            L.marker([35.1, 142.8])
+                .bindPopup(`<h1>Ridgeway County Parks Visitor Center ATM</h1><img src="https://drive.google.com/uc?export=view&id=1X-khP9MpP4RI8LUrgpQ_SeYS9s8W25K7" width="100%" max-width="300px"><p>An Automatic Teller Machine that allows you to deposit, withdraw and transfer money. <b>You can not transfer less than 50$ to another player.</b></p>`)
+                .addTo(money_machine);
+            L.marker([-43.4, 164.5])
+                .bindPopup(`<h1>Milton Gas Station ATM</h1><img src="https://drive.google.com/uc?export=view&id=1HYvZ1sMsDgVuihLqhHD5CjDNLjPObSeO" width="100%" max-width="300px"><p>An Automatic Teller Machine that allows you to deposit, withdraw and transfer money. <b>You can not transfer less than 50$ to another player.</b></p>`)
+                .addTo(money_machine);
+            L.marker([71.6, -179.2])
+                .bindPopup(`<h1>Sterling Heights Gas Station ATM</h1><img src="https://drive.google.com/uc?export=view&id=1jXag8P7tW9zSffeI81UubTybNaH7xMhm" width="100%" max-width="300px"><p>An Automatic Teller Machine that allows you to deposit, withdraw and transfer money. <b>You can not transfer less than 50$ to another player.</b></p>`)
+                .addTo(money_machine);
+            L.marker([69.6, -182.6])
+                .bindPopup(`<h1>Tom's Fresh Fades ATM</h1><img src="https://drive.google.com/uc?export=view&id=1_QvGwVfmdZ8tJYuFD2cWVNp3HPNEp1a6" width="100%" max-width="300px"><p>An Automatic Teller Machine that allows you to deposit, withdraw and transfer money. <b>You can not transfer less than 50$ to another player.</b></p>`)
+                .addTo(money_machine);
+            L.marker([67.4, -181.5])
+                .bindPopup(`<h1>Rafael's Auto Care ATM</h1><img src="https://drive.google.com/uc?export=view&id=1xedCdv3Ix0FQmh33BUi7uuopY_xsi7He" width="100%" max-width="300px"><p>An Automatic Teller Machine that allows you to deposit, withdraw and transfer money. <b>You can not transfer less than 50$ to another player.</b></p>`)
+                .addTo(money_machine);
+            L.marker([66.65, -186.2])
+                .bindPopup(`<h1>Sterling Gun Club ATM</h1><img src="https://drive.google.com/uc?export=view&id=1-BdkV-76cbmixyaIkjkmRC2JEXhb-wDt" width="100%" max-width="300px"><p>An Automatic Teller Machine that allows you to deposit, withdraw and transfer money. <b>You can not transfer less than 50$ to another player.</b></p>`)
+                .addTo(money_machine);
+            L.marker([64.7, -179.5])
+                .bindPopup(`<h1>Sterling Heights Bar ATM</h1><img src="https://drive.google.com/uc?export=view&id=1x8cqBqsF7XqDdb-cvKXzTpGQB8mswwcz" width="100%" max-width="300px"><p>An Automatic Teller Machine that allows you to deposit, withdraw and transfer money. <b>You can not transfer less than 50$ to another player.</b></p>`)
+                .addTo(money_machine);
+            L.marker([62.9, -185.7])
+                .bindPopup(`<h1>Discount Furniture | Mattresses ATM</h1><img src="https://drive.google.com/uc?export=view&id=1c-PnocEM1iRD6TRKY56R3uPKTyCppsAu" width="100%" max-width="300px"><p>An Automatic Teller Machine that allows you to deposit, withdraw and transfer money. <b>You can not transfer less than 50$ to another player.</b></p>`)
+                .addTo(money_machine);
             var baseMaps = {
                 "Sattelite": backgroundImage
             };
             var overlayMaps = {
                 "Territories": territory,
                 "Gas Stations": gas_station,
-                "Car Dealership": car_dealer,
-                "Car Mechanic": mechanic,
-                "Item Shop": shop,
+                "Car Dealerships": car_dealer,
+                "Car Mechanics": mechanic,
+                "Item Shops": shop,
                 "Housing": housing,
+                "ATMs": money_machine,
                 "Law Enforcement": law_enforcement,
                 "Government": government,
                 "Miscellaneous": misc,
