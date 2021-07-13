@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
         <title>Ridgeway County Map</title>
         <meta name="title" content="Ridgeway County Map">
         <meta name="description" content="An unofficial map of Ridgeway County made by vonotige/voidvisor#2026.">
@@ -9,6 +9,10 @@
         <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
         <link rel="stylesheet" href="L.Control.MousePosition.css"/>
         <script src="L.Control.MousePosition.js"></script>
+        <script src="leaflet.textpath.js"></script>
+        <script src="leaflet.polylineDecorator.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
         <style>
             #map {
                 position: absolute;
@@ -18,12 +22,31 @@
                 right: 0;
                 background: #112024
             }
+            #delete, #export {
+                position: absolute;
+                top:50px;
+                right:10px;
+                z-index:100;
+                background:white;
+                color:black;
+                padding:6px;
+                border-radius:4px;
+                font-family: 'Helvetica Neue';
+                cursor: pointer;
+                font-size:12px;
+                text-decoration:none;
+            }
+            #export {
+                top:90px;
+            }
         </style>
     </head>
     <body>
         <div id = "map"></div>
+        <div id='delete'>Delete Features</div>
+        <a href='#' id='export'>Export Features</a>
         <script>
-            var imageUrl = 'https://drive.google.com/uc?export=view&id=15n4PUoGko-SRlVWGu3Vy1D5qSrHFa6Ij',
+            var imageUrl = 'https://drive.google.com/uc?export=view&id=1eQzkXaf6Q7bKXYtdbnG1O0_cWui9gZvI',
             imageBounds = [[90.0, -234.0702211], [-90.0, 234.0702211]];
             var backgroundImage = L.imageOverlay(imageUrl, imageBounds, {
                 attribution: '<a href="https://discord.com/invite/ridgeway" target="_blank">Ridgeway</a> Developer Oversight',
@@ -41,9 +64,30 @@
             var misc = L.layerGroup();
             var car_dealer = L.layerGroup();
             var money_machine = L.layerGroup();
+            var street = L.layerGroup();
             var map = L.map('map', {
-                layers: [backgroundImage, territory, gas_station, mechanic, shop, housing, car_dealer]
+                layers: [backgroundImage, territory, gas_station, mechanic, shop, housing, car_dealer, street]
             }).setView([0, 0], 1);
+            var featureGroup = L.featureGroup().addTo(map);
+            //disable everything below
+            var drawControl = new L.Control.Draw({
+                edit: {
+                    featureGroup: featureGroup
+                }
+            }).addTo(map);
+            map.on('draw:created', function(e) {
+                featureGroup.addLayer(e.layer);
+            });
+            document.getElementById('delete').onclick = function(e) {
+                featureGroup.clearLayers();
+            }
+            document.getElementById('export').onclick = function(e) {
+                var data = featureGroup.toGeoJSON();
+                var convertedData = 'text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(data));
+                document.getElementById('export').setAttribute('href', 'data:' + convertedData);
+                document.getElementById('export').setAttribute('download','data.geojson');
+            }
+            //disable everything above
             var gasIcon = L.icon({
                 iconUrl: 'markers/gas-icon.png',
                 iconSize: [25, 41],
@@ -323,6 +367,196 @@
             L.marker([-70.2, -81], {icon: atmIcon})
                 .bindPopup(`<h1>Palmer International Airport ATM</h1><img src="https://drive.google.com/uc?export=view&id=1e5pNKR_j-k6DAqVJ9ufS-nNLgDSuZLvS" width="100%" max-width="300px"><p>An Automatic Teller Machine that allows you to deposit, withdraw and transfer money. <b>You can not transfer less than 50$ to another player.</b></p>`)
                 .addTo(money_machine);
+            var overlookRoad = L.polyline([[-72.646486,-182.680664],[-72.874402,-184.350586],[-73.578167,-186.723633],[-73.971078,-187.426758],[-76.221675,-188.85498],[-76.750473,-189.162598],[-77.210776,-189.18457],[-77.739618,-188.986816],[-78.376004,-188.415527],[-79.331152,-186.394043],[-79.68325,-185.800781],[-80.441282,-185.141602],[-80.718183,-184.614258],[-80.983688,-183.55957],[-82.223142,-173.254395],[-82.352877,-171.14502],[-82.379147,-169.299316],[-82.338243,-167.365723],[-82.255779,-165.761719],[-82.160454,-164.619141],[-82.139447,-163.608398],[-82.157457,-157.587891],[-82.172433,-153.69873],[-82.178416,-150.424805],[-82.136441,-148.40332],[-81.842522,-139.174805],[-81.811285,-137.680664],[-81.792486,-136.274414],[-81.748454,-134.033203],[-81.653308,-132.451172],[-81.479293,-131.176758],[-81.174491,-130.341797]])
+                .bindTooltip(`Speed Limit: 30 SPS`)
+                .addTo(street);
+            overlookRoad.setText('  Overlook Road  ', {repeat: true, center: true, attributes: {fill: 'white'}});
+            var farleyStreet = L.polyline([[-78.690491,-149.018555],[-81.187965,-148.930664]])
+                .bindTooltip(`Speed Limit: 50 SPS`)
+                .addTo(street);
+            farleyStreet.setText('  Farley Street  ', {repeat: true, center: true, attributes: {fill: 'white'}});
+            var jacksonStreet = L.polyline([[-70.78691,-140.361328],[-78.64732,-140.405273]])
+                .bindTooltip(`Speed Limit: 50 SPS`)
+                .addTo(street);
+            jacksonStreet.setText('  Jackson Street  ', {repeat: true, center: true, attributes: {fill: 'white'}});
+            var lagunaAvenue = L.polyline([[-70.938181,-157.587891],[-75.027664,-157.807617],[-81.167746,-157.961426]])
+                .bindTooltip(`Speed Limit: 50 SPS`)
+                .addTo(street);
+            lagunaAvenue.setText('  Laguna Avenue  ', {repeat: true, center: true, attributes: {fill: 'white'}});
+            var powerStreet = L.polyline([[-75.061686,-182.768555],[-75.07301,-159.389648],[-74.844929,-156.884766],[-74.879357,-148.447266],[-74.798906,-144.975586],[-74.787379,-140.339355]])
+                .bindTooltip(`Speed Limit: 50 SPS`)
+                .addTo(street);
+            powerStreet.setText('  Power Street  ', {repeat: true, center: true, attributes: {fill: 'white'}});
+            var stokesStreet = L.polyline([[-75.061686,-172.441406],[-81.20142,-172.595215]])
+                .bindTooltip(`Speed Limit: 50 SPS`)
+                .addTo(street);
+            stokesStreet.setText('  Stokes Street  ', {repeat: true, center: true, attributes: {fill: 'white'}});
+            var palmerBoulevard = L.polyline([[-78.655967,-182.944336],[-78.660288,-125.068359],[-78.610496,-122.288818],[-78.46202,-117.553711],[-78.433418,-115.883789],[-78.43562,-114.741211]])
+                .bindTooltip(`Speed Limit: 50 SPS`)
+                .addTo(street);
+            palmerBoulevard.setText('  Palmer Boulevard  ', {repeat: true, center: true, attributes: {fill: 'white'}});
+            var quimbyPlace = L.polyline([[-80.283104,-115.268555],[-80.088352,-113.115234],[-79.624056,-110.170898],[-79.400085,-109.35791],[-77.892647,-106.611328],[-77.029559,-106.699219],[-76.079668,-108.237305]])
+                .bindTooltip(`Speed Limit: 50 SPS`)
+                .addTo(street);
+            quimbyPlace.setText('  Quimby Place  ', {repeat: true, center: true, attributes: {fill: 'white'}});
+            var autoWay = L.polyline([[-76.710125,-182.680664],[-76.730314,-157.895508]])
+                .bindTooltip(`Speed Limit: 50 SPS`)
+                .addTo(street);
+            autoWay.setText('  Auto Way  ', {repeat: true, center: true, attributes: {fill: 'white'}});
+            var laksideDrive = L.polyline([[-71.927936,-182.625732],[-71.941564,-179.67041],[-71.725773,-174.155273],[-71.159391,-165.476074],[-71.013386,-161.488037],[-70.966864,-159.752197],[-70.974028,-155.302734],[-71.024106,-153.500977],[-71.095425,-152.226563],[-71.145195,-150.930176],[-71.095425,-149.611816],[-70.988349,-147.392578],[-70.794139,-144.228516],[-70.779678,-136.318359],[-70.844673,-134.890137],[-71.162939,-131.176758],[-71.392155,-129.309082],[-71.711989,-126.452637],[-71.938158,-123.398438],[-72.033289,-120.344238],[-72.04684,-114.32373]])
+                .bindTooltip(`Speed Limit: 50 SPS`)
+                .addTo(street);
+            laksideDrive.setText('  Lakeside Drive  ', {repeat: true, center: true, attributes: {fill: 'white'}});
+            var ruckerRoad = L.polyline([[-71.917709,-182.570801],[-75.078669,-182.768555]])
+                .bindTooltip(`Speed Limit: 50 SPS`)
+                .addTo(street);
+            ruckerRoad.setText('  Rucker Road  ', {repeat: true, center: true, attributes: {fill: 'white'}});
+            var ruckerStreet = L.polyline([[-75.067349,-182.768555],[-79.004962,-183.032227],[-79.51666,-182.900391],[-79.792852,-182.702637],[-80.065634,-182.15332],[-80.52484,-180.922852],[-80.935352,-179.033203],[-81.214853,-176.088867],[-81.194695,-148.886719]])
+                .bindTooltip(`Speed Limit: 50 SPS`)
+                .addTo(street);
+            ruckerStreet.setText('  Rucker Street  ', {repeat: true, center: true, attributes: {fill: 'white'}});
+            var atleeRoad = L.polyline([[-81.193013,-148.919678],[-81.171119,-123.574219],[-81.144099,-121.838379],[-81.035194,-120.124512],[-80.820397,-118.015137],[-80.275684,-115.3125],[-79.788958,-114.521484],[-78.429011,-114.543457]])
+                .bindTooltip(`Speed Limit: 50 SPS`)
+                .addTo(street);
+            atleeRoad.setText('  Atlee Road  ', {repeat: true, center: true, attributes: {fill: 'white'}});
+            var airportRoad = L.polyline([[-78.420193,-114.587402],[-72.033289,-114.345703],[-70.685421,-113.994141],[-68.39918,-112.5],[-67.152898,-110.654297],[-66.231457,-107.841797],[-65.549367,-105.073242],[-65.339347,-102.810059],[-65.293468,-100.283203]])
+                .bindTooltip(`Speed Limit: 50 SPS`)
+                .addTo(street);
+            airportRoad.setText('  Airport Road  ', {repeat: true, center: true, attributes: {fill: 'white'}});
+            var airportRoad2 = L.polyline([[-65.293468,-94.614258],[-64.764759,-90.219727],[-64.472794,-88.330078],[-63.733909,-83.408203],[-63.704722,-82.133789],[-63.840668,-80.859375],[-64.101007,-79.562988],[-64.557881,-78.33252],[-65.366837,-77.211914]])
+                .bindTooltip(`Speed Limit: 30 SPS`)
+                .addTo(street);
+            airportRoad2.setText('  Airport Road  ', {repeat: true, center: true, attributes: {fill: 'white'}});
+            var airportRoad3 = L.polyline([[-65.293468,-100.283203],[-65.293468,-94.614258],[-65.56755,-93.120117],[-65.730626,-90.307617],[-66.443107,-87.626953],[-67.458082,-86.088867],[-68.106102,-86.000977],[-71.286699,-86.616211],[-71.910888,-85.825195],[-72.26231,-84.331055],[-72.38241,-82.792969],[-72.302431,-81.342773],[-72.114445,-80.15625],[-71.691293,-78.618164],[-70.095529,-77.299805],[-65.366837,-77.211914]])
+                .bindTooltip(`Speed Limit: 30 SPS`)
+                .addTo(street);
+            airportRoad3.setText('  Airport Road  ', {repeat: true, center: true, attributes: {fill: 'white'}});
+            var alderpointDrive = L.polyline([[45.644768,-179.648438],[39.300299,-178.945312],[33.468108,-178.417969],[27.215556,-178.945312],[15.961329,-180.878906],[11.953349,-180.791016],[4.696879,-180.307617],[-1.933227,-180.175781],[-5.790897,-180.527344],[-8.233237,-181.098633],[-10.09867,-181.450195],[-21.657428,-181.625977],[-27.059126,-181.933594],[-31.503629,-182.329102],[-55.229023,-182.285156],[-67.692771,-182.241211],[-71.924528,-182.592773]])
+                .bindTooltip(`Speed Limit: 50 SPS`)
+                .addTo(street);
+            alderpointDrive.setText('  Alderpoint Road  ', {repeat: true, center: true, attributes: {fill: 'white'}});
+            var miraMesaRoad = L.polyline([[-67.850702,-182.263184],[-63.918058,-165.410156],[-63.889062,-151.962891],[-64.158531,-149.853516],[-64.557881,-147.941895],[-64.736641,-146.799316],[-64.848937,-145.239258],[-64.774125,-143.657227],[-64.444372,-140.844727],[-63.850354,-137.834473],[-62.714462,-134.802246],[-61.48076,-132.670898],[-57.539417,-128.847656],[-56.255557,-126.496582],[-55.028022,-120.124512],[-54.316523,-118.608398],[-52.988337,-117.685547],[-48.922499,-117.641602],[-47.546872,-117.333984],[-45.752193,-116.103516],[-43.945372,-115.268555],[-39.97712,-115.092773],[-37.195331,-115.400391]])
+                .bindTooltip(`Speed Limit: 50 SPS`)
+                .addTo(street);
+            miraMesaRoad.setText('  Mira Mesa Road  ', {repeat: true, center: true, attributes: {fill: 'white'}});
+            var miraMesaRoad2 = L.polyline([[-23.885838,-131.77002],[-32.842674,-128.144531],[-34.170908,-126.947021],[-34.903953,-125.123291],[-34.885931,-118.78418],[-35.532226,-116.938477],[-37.195331,-115.400391]])
+                .bindTooltip(`Speed Limit: 50 SPS`)
+                .addTo(street);
+            miraMesaRoad2.setText('  Mira Mesa Road  ', {repeat: true, center: true, attributes: {fill: 'white'}});
+            var gottDammRoad = L.polyline([[-31.896214,-176.19873],[-36.049099,-178.26416],[-38.393339,-178.59375],[-46.316584,-176.748047],[-47.989922,-176.616211],[-54.316523,-174.770508],[-57.444949,-174.155273],[-59.063154,-174.375],[-60.726944,-174.770508],[-61.41775,-174.243164],[-62.083315,-172.749023],[-62.380185,-170.81543],[-62.855146,-154.951172],[-63.114638,-153.039551],[-63.889062,-151.940918]])
+                .bindTooltip(`Speed Limit: 50 SPS`)
+                .addTo(street);
+            gottDammRoad.setText('  Gott Damm Road  ', {repeat: true, center: true, attributes: {fill: 'white'}});
+            var sanbornRoad = L.polyline([[-39.926588,-115.10376],[-39.97712,-96.459961],[-39.35129,-94.394531],[-37.874853,-93.251953],[-36.615528,-93.076172],[-33.578015,-94.284668],[-31.615966,-94.592285],[-29.61167,-94.306641],[-27.205786,-92.713623],[-26.096255,-91.472168],[-26.096255,-91.472168],[-23.926013,-90.131836],[-21.125498,-89.604492],[-18.62542, -89.78027]])
+                .bindTooltip(`Speed Limit: 50 SPS`)
+                .addTo(street);
+            sanbornRoad.setText('  Sanborn Road  ', {repeat: true, center: true, attributes: {fill: 'white'}});
+            var sanbornRoad2 = L.polyline([[-18.62542, -89.78027],[-15.008464,-90],[-12.726084,-91.098633],[-10.379765,-91.889648],[-7.906912,-91.757812],[-4.094411,-90.131836]])
+                .bindTooltip(`Speed Limit: 30 SPS`)
+                .addTo(street);
+            sanbornRoad2.setText('  Sanborn Road  ', {repeat: true, center: true, attributes: {fill: 'white'}});
+            var belgradeRoad = L.polyline([[-31.597253,-182.351074],[-31.877558,-176.220703],[-31.840233,-172.573242],[-31.391158,-170.288086],[-30.543339,-167.365723],[-26.056783,-157.653809],[-24.926295,-152.929688],[-24.20689,-147.963867],[-24.20689,-147.963867],[-23.885838,-140.141602],[-23.80545,-88.066406]])
+                .bindTooltip(`Speed Limit: 50 SPS`)
+                .addTo(street);
+            belgradeRoad.setText('  Belgrade Road  ', {repeat: true, center: true, attributes: {fill: 'white'}});
+            var belgradeRoad2 = L.polyline([[-23.80545,-88.066406],[-23.725012,-83.583984],[-23.160563,-80.595703],[-22.43134,-77.958984],[-21.493964,-75.585938],[-19.808054,-72.949219],[-17.392579,-70.576172],[-14.902322,-69.257813],[-11.480025,-68.510742],[-6.227934,-68.115234],[-3.645,-67.851563],[-0.483393,-67.060547],[2.504085,-65.961914],[4.959615,-65.566406],[7.144499,-65.566406],[11.393879,-66.005859]])
+                .bindTooltip(`Speed Limit: 30 SPS`)
+                .addTo(street);
+            belgradeRoad2.setText('  Belgrade Road  ', {repeat: true, center: true, attributes: {fill: 'white'}});
+            var danaStreet = L.polyline([[-23.725012,-83.759766],[-19.973349,-83.891602],[-15.834536,-84.111328],[-12.425848,-84.023438],[-10.141932,-83.803711],[-8.885072,-83.979492],[-8.05923,-84.506836],[-7.275292,-85.166016],[-6.708254,-86.044922],[-4.171115,-90.153809],[-1.845384,-92.109375],[0.681136,-93.120117],[4.696879,-94.262695],[8.05923,-95.690918],[10.53102,-96.130371],[12.232655,-96.152344],[14.008696,-95.581055],[15.093339,-94.460449],[15.707663,-92.834473],[16.130262,-90.109863],[16.235772,-85.144043],[16.003576,-83.122559],[15.961329,-80.683594],[15.876809,-79.277344],[15.199386,-77.080078],[14.43468,-75.893555],[13.581921,-74.179688],[12.768946,-71.960449],[11.974845,-69.125977],[11.393879,-66.005859]])
+                .bindTooltip(`Speed Limit: 30 SPS`)
+                .addTo(street);
+            danaStreet.setText('  Dana Street  ', {repeat: true, center: true, attributes: {fill: 'white'}});
+            var almaWay = L.polyline([[-6.577303,-86.44043],[-5.747174,-84.638672],[-5.266008,-82.96875],[-4.718778,-79.650879],[-4.477856,-77.01416],[-3.973861,-73.981934],[-3.666928,-71.279297],[-3.732708,-67.895508]])
+                .bindTooltip(`Speed Limit: 30 SPS`)
+                .addTo(street);
+            almaWay.setText('  Alma Way  ', {repeat: true, center: true, attributes: {fill: 'white'}});
+            var melonStreet = L.polyline([[4.784469,-94.284668],[5.659719,-92.021484],[6.118708,-89.67041],[6.184246,-87.561035],[5.878332,-85.253906],[5.790897,-80.332031],[6.249776,-75.300293]])
+                .bindTooltip(`Speed Limit: 30 SPS`)
+                .addTo(street);
+            melonStreet.setText('  Melon Street  ', {repeat: true, center: true, attributes: {fill: 'white'}});
+            var rodgersLane = L.polyline([[-12.597455,-84.089355],[-12.060809,-81.97998],[-11.156845,-80.090332],[-10.185187,-79.277344],[-7.993957,-78.068848],[-4.477856,-76.948242],[1.406109,-75.761719],[2.635789,-75.498047],[6.249776,-75.300293],[10.206813,-75.432129],[14.583583,-76.069336]])
+                .bindTooltip(`Speed Limit: 30 SPS`)
+                .addTo(street);
+            rodgersLane.setText('  Rodgers Lane  ', {repeat: true, center: true, attributes: {fill: 'white'}});
+            var whyteRoad = L.polyline([[27.098254,-178.967285],[28.22697,-159.433594],[28.652031,-153.720703],[29.036961,-150.952148],[29.53523,-147.480469],[31.44741,-139.987793],[32.971804,-134.318848],[34.777716,-128.671875]])
+                .bindTooltip(`Speed Limit: 50 SPS`)
+                .addTo(street);
+            whyteRoad.setText('  Whyte Road  ', {repeat: true, center: true, attributes: {fill: 'white'}});
+            var whyteRoad = L.polyline([[34.777716,-128.671875],[47.249407,-96.767578],[48.57479,-91.362305],[49.239121,-87.275391],[49.59647,-83.210449],[49.823809,-80.266113],[50.499452,-75.585938]])
+                .bindTooltip(`Speed Limit: 50 SPS<br>Minimum Speed: 30 SPS`)
+                .addTo(street);
+            whyteRoad.setText('  Whyte Road  ', {repeat: true, center: true, attributes: {fill: 'white'}});
+            var majellanWay = L.polyline([[73.971078,-170.200195],[72.945431,-170.683594],[70.229744,-170.683594],[69.1938,-170.639648],[68.040461,-170.375977],[65.712557,-169.848633],[63.450509,-169.716797],[57.397624,-169.716797],[55.627996,-170.112305],[53.748711,-170.288086],[51.096623,-170.288086],[46.103709,-170.244141]])
+                .bindTooltip(`Speed Limit: 30 SPS`)
+                .addTo(street);
+            majellanWay.setText('  Majellan Way  ', {repeat: true, center: true, attributes: {fill: 'white'}});
+            var cypressStreet = L.polyline([[50.819818,-187.097168],[50.875311,-182.373047],[50.986099,-179.208984],[50.944584,-170.288086]])
+                .bindTooltip(`Speed Limit: 50 SPS`)
+                .addTo(street);
+            cypressStreet.setText('  Cypress Street  ', {repeat: true, center: true, attributes: {fill: 'white'}});
+            var opalAvenue = L.polyline([[74.758524,-182.856445],[73.578167,-184.306641],[72.275693,-184.790039],[69.287257,-184.570313],[65.766727,-183.691406],[58.539595,-183.251953],[56.389584,-182.592773],[50.986099,-180.615234],[45.629405,-179.648438]])
+                .bindTooltip(`Speed Limit: 50 SPS`)
+                .addTo(street);
+            opalAvenue.setText('  Opal Avenue  ', {repeat: true, center: true, attributes: {fill: 'white'}});
+            var redwoodStreet = L.polyline([[63.381679,-183.515625],[63.411198,-169.694824]])
+                .bindTooltip(`Speed Limit: 50 SPS`)
+                .addTo(street);
+            redwoodStreet.setText('  Redwood Street  ', {repeat: true, center: true, attributes: {fill: 'white'}});
+            var sycamoreStreet = L.polyline([[72.100944,-190.437012],[72.222101,-186.196289],[72.215391,-170.661621]])
+                .bindTooltip(`Speed Limit: 50 SPS`)
+                .addTo(street);
+            sycamoreStreet.setText('  Sycamore Street  ', {repeat: true, center: true, attributes: {fill: 'white'}});
+            var alderMountainRoad = L.polyline([[11.415418,-66.005859],[14.923554,-66.335449],[19.993998,-66.75293],[28.265682,-66.687012],[34.867905,-66.665039],[37.352693,-67.08252],[38.822591,-67.609863],[41.178654,-69.23584],[42.472097,-70.554199],[44.056012,-72.37793],[45.598666,-73.564453],[50.513427,-75.585938],[54.033586,-76.992188],[55.090944,-77.255859],[55.912273,-77.255859],[56.968936,-77.145996],[61.459771,-76.069336],[68.350594,-70.664063],[70.214875,-67.631836],[71.031249,-65.302734],[72.52813,-59.985352],[73.220358,-56.953125],[73.763497,-53.723145],[74.259738,-48.669434],[74.396253,-44.956055],[74.484662,-38.540039],[74.390342,-31.68457],[74.043723,-21.049805],[73.837058,-17.797852],[73.540855,-14.72168],[72.945431,-10.019531],[71.992578,-5.668945],[69.178184,3.911133],[66.705169,9.228516],[63.035039,14.238281],[60.716198,16.699219],[58.539595,17.490234],[56.704506,17.841797],[31.765537,17.841797]])
+                .bindTooltip(`Speed Limit: 50 SPS`)
+                .addTo(street);
+            alderMountainRoad.setText('  Alder Mountain Road  ', {repeat: true, center: true, attributes: {fill: 'white'}});
+            var alderMountainRoad2 = L.polyline([[11.415418,-66.005859],[11.566144,-64.138184],[11.845847,-62.446289],[12.704651,-60.666504],[13.880746,-58.996582],[14.85985,-56.271973],[15.093339,-54.228516],[14.923554,-52.053223],[14.43468,-50.031738],[10.617418,-41.330566],[10.120302,-39.990234],[7.449624,-30.014648],[7.351571,-28.828125],[7.406048,-27.268066],[8.363693,-21.774902],[9.102097,-19.511719],[9.882275,-17.62207],[17.727759,12.963867],[18.229351,13.886719],[21.2689,17.446289],[22.268764,18.127441],[23.382598,18.566895],[24.507143,18.654785],[31.765537,17.841797]])
+                .bindTooltip(`Speed Limit: 50 SPS`)
+                .addTo(street);
+            alderMountainRoad2.setText('  Alder Mountain Road  ', {repeat: true, center: true, attributes: {fill: 'white'}});
+            var stateParkRoad = L.polyline([[72.053611,-5.95459],[72.275693,-4.21875],[74.613445,28.520508],[74.68325,30.541992],[74.613445,32.299805],[74.484662,34.057617],[74.295463,35.639648],[71.286699,48.779297],[71.01696,50.185547],[70.772443,51.547852],[69.809309,57.919922],[69.395783,59.326172],[68.958391,60.600586],[66.739902,64.863281],[66.196009,65.698242],[53.304621,79.365234],[51.835778,81.035156],[50.736455,83.408203],[50.092393,86.352539],[47.960502,118.344727],[47.517201,122.695313],[47.040182,125.463867],[46.468133,128.188477],[45.58329,131.044922],[44.308127,134.208984],[42.585444,137.460938],[38.993572,143.217773],[37.125286,145.854492],[34.994004,148.227539],[32.546813,150.380859],[28.130128,153.017578],[21.779905,155.830078],[-6.227934,164.047852],[-8.581021,164.179688],[-51.536086,158.774414]])
+                .bindTooltip(`Speed Limit: 50 SPS`)
+                .addTo(street);
+            stateParkRoad.setText('  State Park Road  ', {repeat: true, center: true, attributes: {fill: 'white'}});
+            var stateParkRoad2 = L.polyline([[47.989922,118.146973],[56.096556,119.487305],[56.824933,119.94873],[57.657158,121.069336],[58.031372,122.453613],[58.193871,123.793945],[58.147519,125.112305],[57.996455,125.969238],[53.904338,142.338867],[52.829321,145.129395],[50.986099,148.271484],[48.414619,150.666504],[41.244772,155.500488],[38.822591,156.75293],[36.774092,157.236328],[26.037042,157.5],[23.5237,156.84082],[21.922663,155.76416]])
+                .bindTooltip(`Speed Limit: 50 SPS`)
+                .addTo(street);
+            stateParkRoad2.setText('  State Park Road  ', {repeat: true, center: true, attributes: {fill: 'white'}});
+            var highway50 = L.polyline([[74.752746,-182.856445],[75.303311,-182.087402],[75.936226,-180.593262],[76.486046,-178.439941],[76.91564,-175.275879],[77.137612,-172.265625],[77.171806,-170.090332],[77.186434,-52.646484],[77.24963,-45.021973],[75.634085,-5.910645],[66.878345,53.876953],[65.330178,58.095703],[63.352129,60.380859],[61.41775,61.21582],[36.031332,61.083984]])
+                .bindTooltip(`Speed Limit: 70 SPS`)
+                .addTo(street);
+            var icon_50 = L.icon({
+                iconUrl: 'shield_50.png',
+                iconSize: [25, 25],
+                iconAnchor: [12.5, 12.5]
+            });
+            var decorator50 = L.polylineDecorator(highway50, {
+                patterns: [
+                {offset: 12.5, repeat: 100, symbol: L.Symbol.marker({markerOptions: {icon: icon_50}})}
+                ]
+            }).addTo(street);
+            var highway395_1 = L.polyline([[-75.962898,-182.856445],[-75.920199,-117.46582],[-75.748125,-114.477539],[-75.297735,-111.928711],[-74.601781,-109.555664],[-73.873717,-107.797852],[-72.711903,-106.875],[-71.441171,-107.314453],[-70.035597,-107.797852],[-67.974634,-107.929688],[-1.845384,-107.841797],[8.146243,-107.929688],[14.349548,-107.666016],[18.812718,-105.380859],[22.512557,-101.337891],[23.885838,-97.119141],[24.686952,-90.966797],[24.44715,-80.507813],[24.367114,-66.796875],[24.126702,-59.765625],[24.766785,-54.84375],[26.509905,-49.833984]])
+                .bindTooltip(`Speed Limit: 70 SPS`)
+                .addTo(street);
+            var icon_395 = L.icon({
+                iconUrl: 'shield_395.png',
+                iconSize: [30, 25],
+                iconAnchor: [15, 12.5]
+            });
+            var decorator395_1 = L.polylineDecorator(highway395_1, {
+                patterns: [
+                {offset: 15, repeat: 120, symbol: L.Symbol.marker({markerOptions: {icon: icon_395}})}
+                ]
+            }).addTo(street);
+            var highway395_2 = L.polyline([[36.031332,13.271484],[36.031332,96.459961],[35.710838,101.381836],[34.343436,108.061523],[32.509762,113.24707],[29.53523,118.828125],[26.94166,122.519531],[22.796439,126.958008],[18.687879,130.03418],[12.21118,133.417969],[5.178482,135.439453],[-1.933227,135.966797],[-22.755921,136.054688]])
+                .bindTooltip(`Speed Limit: 70 SPS`)
+                .addTo(street);
+            var decorator395_2 = L.polylineDecorator(highway395_2, {
+                patterns: [
+                {offset: 15, repeat: 120, symbol: L.Symbol.marker({markerOptions: {icon: icon_395}})}
+                ]
+            }).addTo(street);
             var baseMaps = {
                 "Sattelite": backgroundImage
             };
@@ -338,7 +572,8 @@
                 "Government": government,
                 "Miscellaneous": misc,
                 "Unused Location": unused,
-                "No Interior": no_interior
+                "No Interior": no_interior,
+                "Street Names": street
             }
             L.control.layers(baseMaps, overlayMaps).addTo(map);
             L.control.mousePosition().addTo(map);
