@@ -68,9 +68,9 @@
             var map = L.map('map', {
                 layers: [backgroundImage, territory, gas_station, mechanic, shop, housing, car_dealer, street]
             }).setView([0, 0], 1);
-            var featureGroup = L.featureGroup().addTo(map);
+            //var featureGroup = L.featureGroup().addTo(map);
             //disable everything below
-            var drawControl = new L.Control.Draw({
+            /*var drawControl = new L.Control.Draw({
                 edit: {
                     featureGroup: featureGroup
                 }
@@ -86,7 +86,7 @@
                 var convertedData = 'text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(data));
                 document.getElementById('export').setAttribute('href', 'data:' + convertedData);
                 document.getElementById('export').setAttribute('download','data.geojson');
-            }
+            }*/
             //disable everything above
             var gasIcon = L.icon({
                 iconUrl: 'markers/gas-icon.png',
