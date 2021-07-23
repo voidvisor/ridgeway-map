@@ -46,10 +46,10 @@
     </head>
     <body>
         <div id = "map"></div>
-        <!--disable below-->
+        <!--disable below
         <div id='delete'>Delete Features</div>
         <a href='#' id='export'>Export Features</a>
-        
+        -->
         <script>
             var imageUrl = 'https://drive.google.com/uc?export=view&id=1eQzkXaf6Q7bKXYtdbnG1O0_cWui9gZvI',
             imageBounds = [[90.0, -234.0702211], [-90.0, 234.0702211]];
@@ -77,7 +77,7 @@
             var map = L.map('map', {
                 layers: [backgroundImage, territory, gas_station, mechanic, shop, housing, car_dealer, street]
             }).setView([0, 0], 1);
-            //disable everything below
+            /*disable everything below
             var featureGroup = L.featureGroup().addTo(map);
             var drawControl = new L.Control.Draw({
                 edit: {
@@ -96,7 +96,7 @@
                 document.getElementById('export').setAttribute('href', 'data:' + convertedData);
                 document.getElementById('export').setAttribute('download','data.geojson');
             }
-            //disable everything above
+            //disable everything above*/
             var gasIcon = L.icon({
                 iconUrl: 'markers/gas-icon.png',
                 iconSize: [25, 41],
