@@ -46,10 +46,10 @@
     </head>
     <body>
         <div id = "map"></div>
-        <!--
+        <!--disable below-->
         <div id='delete'>Delete Features</div>
         <a href='#' id='export'>Export Features</a>
-        -->
+        
         <script>
             var imageUrl = 'https://drive.google.com/uc?export=view&id=1eQzkXaf6Q7bKXYtdbnG1O0_cWui9gZvI',
             imageBounds = [[90.0, -234.0702211], [-90.0, 234.0702211]];
@@ -70,12 +70,16 @@
             var car_dealer = L.layerGroup();
             var money_machine = L.layerGroup();
             var street = L.layerGroup();
+            var transit = L.layerGroup();
+            var parking = L.layerGroup();
+            var picnic = L.layerGroup();
+            var park = L.layerGroup();
             var map = L.map('map', {
                 layers: [backgroundImage, territory, gas_station, mechanic, shop, housing, car_dealer, street]
             }).setView([0, 0], 1);
-            //var featureGroup = L.featureGroup().addTo(map);
             //disable everything below
-            /*var drawControl = new L.Control.Draw({
+            var featureGroup = L.featureGroup().addTo(map);
+            var drawControl = new L.Control.Draw({
                 edit: {
                     featureGroup: featureGroup
                 }
@@ -91,7 +95,7 @@
                 var convertedData = 'text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(data));
                 document.getElementById('export').setAttribute('href', 'data:' + convertedData);
                 document.getElementById('export').setAttribute('download','data.geojson');
-            }*/
+            }
             //disable everything above
             var gasIcon = L.icon({
                 iconUrl: 'markers/gas-icon.png',
@@ -183,6 +187,51 @@
                 shadowSize: [41, 41],
                 shadowAnchor: [14, 41]
             });
+            var tramIcon = L.icon({
+                iconUrl: 'markers/tram-station.png',
+                iconSize: [25, 41],
+                iconAnchor: [12, 41],
+                popupAnchor: [1.5, -34],
+                shadowUrl: 'markers/marker-shadow.png',
+                shadowSize: [41, 41],
+                shadowAnchor: [14, 41]
+            });
+            var parkingIcon = L.icon({
+                iconUrl: 'markers/parking-icon.png',
+                iconSize: [25, 41],
+                iconAnchor: [12, 41],
+                popupAnchor: [1.5, -34],
+                shadowUrl: 'markers/marker-shadow.png',
+                shadowSize: [41, 41],
+                shadowAnchor: [14, 41]
+            });
+            var picnicIcon = L.icon({
+                iconUrl: 'markers/picnic-icon.png',
+                iconSize: [25, 41],
+                iconAnchor: [12, 41],
+                popupAnchor: [1.5, -34],
+                shadowUrl: 'markers/marker-shadow.png',
+                shadowSize: [41, 41],
+                shadowAnchor: [14, 41]
+            });
+            var parkIcon = L.icon({
+                iconUrl: 'markers/park-icon.png',
+                iconSize: [25, 41],
+                iconAnchor: [12, 41],
+                popupAnchor: [1.5, -34],
+                shadowUrl: 'markers/marker-shadow.png',
+                shadowSize: [41, 41],
+                shadowAnchor: [14, 41]
+            });
+            var busIcon = L.icon({
+                iconUrl: 'markers/bus-stop.png',
+                iconSize: [25, 41],
+                iconAnchor: [12, 41],
+                popupAnchor: [1.5, -34],
+                shadowUrl: 'markers/marker-shadow.png',
+                shadowSize: [41, 41],
+                shadowAnchor: [14, 41]
+            });
             L.marker([-73.5, -144], {icon: govIcon})
                 .bindPopup('<h1>Ridgeway County Hall</h1><img src="https://drive.google.com/uc?export=view&id=1F5GBD9gA1jNKz6tYedo54d437tKW844V" width="100%" max-width="300px"><p>The Ridgway County Hall holds the County Board meeting room and the Ridgeway County Court.</p><i>1 Jackson St</i>')
                 .addTo(government);
@@ -198,12 +247,12 @@
             L.marker([-73.8, -152.5], {icon: unusedIcon})
                 .bindPopup('<h1>Ridgeway County Fire Station</h1><img src="https://drive.google.com/uc?export=view&id=1iaDHOZNyu4EGpsnqyRaeLbTFlBDko4qV" width="100%" max-width="300px"><p>A building that is currently unused. Rumored to contain the Ridgeway County Fire Department in the future.</p><i>2281 Laguna Ave</i>')
                 .addTo(unused);
-            L.marker([-72.3, -152])
-                .bindPopup('<h1>Palmer City Community Park</h1><img src="https://drive.google.com/uc?export=view&id=15Sl4L3eLQ4-kAFRHSky0Ai1Q_NxPrjx2" width="100%" max-width="300px"><p>The only city park in the county with 3 picnic tables. Legend has it you can see the Ridgeway Park Service patrolling near here.</p><i>1181 Lakeside Dr</i>')
-                .addTo(misc);
-            L.marker([-81.7, -160])
+            L.marker([-72.3, -152], {icon: parkIcon})
+                .bindPopup('<h1>Palmer City Community Park</h1><img src="https://drive.google.com/uc?export=view&id=15Sl4L3eLQ4-kAFRHSky0Ai1Q_NxPrjx2" width="100%" max-width="300px"><p>One of two city parks in the county with 3 picnic tables. Legend has it you can see the Ridgeway Park Service patrolling near here.</p><i>1181 Lakeside Dr</i>')
+                .addTo(park);
+            L.marker([-81.7, -160], {icon: tramIcon})
                 .bindPopup('<h1>Palmer Tram Station</h1><img src="https://drive.google.com/uc?export=view&id=13MuH5G9Q6pc6uFJ5k5CFKiCdh0XaItbf" width="100%" max-width="300px"><p>A tram goes from here to the Palmer International Airport and back.</p><i>2000 Rucker Ave</i>')
-                .addTo(misc);
+                .addTo(transit);
             L.marker([-72.5, -165.5], {icon: govIcon})
                 .bindPopup('<h1>Government Annex Building</h1><img src="https://drive.google.com/uc?export=view&id=1cl4e-ehFj19tzOdF0fYDx59xlGzOJPII" width="100%" max-width="300px"><p>The Government Annex Building holds 8 offices, a press room and a secure meeting room.</p>')
                 .addTo(government);
@@ -216,11 +265,11 @@
             L.marker([-77.5, -177], {icon: unusedIcon})
                 .bindPopup(`<h1>Walter's</h1><img src="https://drive.google.com/uc?export=view&id=1WGIgXlrvwFjqzkqw8yOv51kxvp7jSRqH" width="100%" max-width="300px"><p>Don't get some Walter's and hang out with your friends.</p><i>923 Rucker Ave</i>`)
                 .addTo(unused);
-            L.marker([-77.5, -165.5])
-                .bindPopup(`<h1>Palmer Parking Garage</h1><img src="https://drive.google.com/uc?export=view&id=1TIN5rUEQrc1lKyUjGcmtTc1CTZy_vpcX" width="100%" max-width="300px"><p>5 storey parking garage. Don't worry about free space.</p><i>1720 Laguna Ave</i>`)
-                .addTo(misc);
+            L.marker([-77.5, -165.5], {icon: parkingIcon})
+                .bindPopup(`<h1>Palmer Parking Garage</h1><img src="https://drive.google.com/uc?export=view&id=1TIN5rUEQrc1lKyUjGcmtTc1CTZy_vpcX" width="100%" max-width="300px"><p>5 storey parking garage. Don't worry about free space. Has 150 parking spots including 6 disabled parking spots.</p><i>1720 Laguna Ave</i>`)
+                .addTo(parking);
             L.marker([-80, -138], {icon: carIcon})
-                .bindPopup(`<h1>Palmer Car Dealership</h1><img src="https://drive.google.com/uc?export=view&id=1U9R_gthF4E1J70uFhAVgfozz-TVyphEK" width="100%" max-width="300px"><p>Biggest car dealership in the game. You can expect to see players roaming around this area.</p><i>1050 Palmer Blvd</i>`)
+                .bindPopup(`<h1>Palmer Car Dealership</h1><img src="https://drive.google.com/uc?export=view&id=1U9R_gthF4E1J70uFhAVgfozz-TVyphEK" width="100%" max-width="300px"><p>Biggest car dealership in the game. You can expect to see players roaming around this area.<br><b>Actila</b> - 1100$<br><b>Cavela</b> - 860$<br><b>Gridlock</b> - 1105$<br><b>Lancaster</b> - 775$<br><b>Lancelot</b> - 820$<br><b>Lancelot Taxi</b> - 870$<br><b>Percivel</b> - 370$<br><b>Percivel Taxi</b> - 405$<br><b>Rodeo</b> - 715$<br><b>Rodeo Covered</b> - 745$<br><b>Visco</b> - 485$</p><h2>Custom license plates cost 25 R$.</h2><i>1050 Palmer Blvd</i>`)
                 .addTo(car_dealer);
             L.marker([-80.5, -165], {icon: unusedIcon})
                 .bindPopup(`<h1>Palmer Strip Mall</h1><img src="https://drive.google.com/uc?export=view&id=1sUHcmHeCq1caRkSTm6aprUmN5g3k5yOc" width="100%" max-width="300px"><p>A currently abandoed strip mall that contains 3 suites.</p><i>2721 Laguna Ave</i>`)
@@ -250,7 +299,7 @@
                 .bindPopup(`<h1>Port of Sterling Heights</h1><img src="https://drive.google.com/uc?export=view&id=1xaFXwX6GdZFpxIVYZZI7lWCqncojUdiR" width="100%" max-width="300px"><p>A hub for all import and export of Ridgeway. Rumors say the port is home to a weapons trafficker.</p>`)
                 .addTo(government);
             L.marker([55.5, -187.5], {icon: carIcon})
-                .bindPopup(`<h1>YOUBUYCARNOW Car Dealership</h1><img src="https://drive.google.com/uc?export=view&id=1LPFNbhwN4uGakVJwMNSuYCysebBlipgv" width="100%" max-width="300px"><p>A second smaller car dealership. Some players may also be spotted here, but they ussually don't stay for long.</p>`)
+                .bindPopup(`<h1>YOUBUYCARNOW Car Dealership</h1><img src="https://drive.google.com/uc?export=view&id=1LPFNbhwN4uGakVJwMNSuYCysebBlipgv" width="100%" max-width="300px"><p>A second smaller car dealership. Some players may also be spotted here, but they ussually don't stay for long.<br><b>Actila</b> - 1100$<br><b>Cavela</b> - 860$<br><b>Gridlock</b> - 1105$<br><b>Lancaster</b> - 775$<br><b>Lancelot</b> - 820$<br><b>Lancelot Taxi</b> - 870$<br><b>Percivel</b> - 370$<br><b>Percivel Taxi</b> - 405$<br><b>Rodeo</b> - 715$<br><b>Rodeo Covered</b> - 745$<br><b>Visco</b> - 485$</p><h2>Custom license plates cost 25 R$.</h2>`)
                 .addTo(car_dealer);
             L.marker([59, -187.5], {icon: atmIcon})
                 .bindPopup(`<h1>Ridgeway Credit Union</h1><img src="https://drive.google.com/uc?export=view&id=1OQQiAZuj7ArmcEKLxYXLrqPnnuYgVHq0" width="100%" max-width="300px"><p>Basically a glorified ATM.</p>`)
@@ -372,6 +421,119 @@
             L.marker([-70.2, -81], {icon: atmIcon})
                 .bindPopup(`<h1>Palmer International Airport ATM</h1><img src="https://drive.google.com/uc?export=view&id=1e5pNKR_j-k6DAqVJ9ufS-nNLgDSuZLvS" width="100%" max-width="300px"><p>An Automatic Teller Machine that allows you to deposit, withdraw and transfer money. <b>You can not transfer less than 50$ to another player.</b></p>`)
                 .addTo(money_machine);
+            L.marker([-70.33, -82.13], {icon: tramIcon})
+                .bindPopup(`<h1>Palmer International Airport Tram Station</h1><img src="https://drive.google.com/uc?export=view&id=1mQgQVFiUrnWs5Sz5Bz4mZNKMApkWZomZ" width="100%" max-width="300px"><p>A tram goes from here to the Palmer Tram Station and back.</p>`)
+                .addTo(transit);
+            L.marker([-68.14, -96.24], {icon: parkingIcon})
+                .bindPopup(`<h1>Palmer International Airport Parking Lot</h1><img src="https://drive.google.com/uc?export=view&id=17NriWEpDF7Ovu3CSgq0VGv9ncHDoz3Cs" width="100%" max-width="300px"><p>A parking lot near the Palmer International Airport with 74 parking spots.</p>`)
+                .addTo(parking);
+            L.marker([-44.15, 152.31], {icon: noIcon})
+                .bindPopup(`<h1>Trailer Park</h1><img src="https://drive.google.com/uc?export=view&id=1HxHIEAHzFtxp2YHVdvlWQtlxr2oWYxIZ" width="100%" max-width="300px"><p>An unfinished trailer park probably realeasing in a future update.</p>`)
+                .addTo(no_interior);
+            L.marker([-8.18, -81.65], {icon: picnicIcon})
+                .bindPopup(`<h1>Oakland Park Picnic Spot</h1><img src="https://drive.google.com/uc?export=view&id=15stZLq8sZL4AzjsIA27lnDP9z3t3iv5y" width="100%" max-width="300px"><p>Come and have a sandwich with your friends. Has 2 picnic tables and a great view of Oakland Park.</p>`)
+                .addTo(picnic);
+            L.marker([-81.57, -107.71], {icon: picnicIcon})
+                .bindPopup(`<h1>Palmer Apartments Picnic Spot</h1><img src="https://drive.google.com/uc?export=view&id=1A_SVg1pZKFKyz2yKQBSzwx1QwBendBCn" width="100%" max-width="300px"><p>Come and have a sandwich with your friends. Has 2 picnic tables and a great view of Palmer Apartments, the sea and the Palmer Apartments Park.</p>`)
+                .addTo(picnic);
+            L.marker([-59.77, -161.25], {icon: picnicIcon})
+                .bindPopup(`<h1>Palmer Dam Picnic Spot</h1><img src="https://drive.google.com/uc?export=view&id=1v8FnWtR3inM1EYYihRvSVSGjS38PUf8c" width="100%" max-width="300px"><p>Come and have a sandwich with your friends. Has 2 picnic tables and a great view of the Palmer Dam.</p>`)
+                .addTo(picnic);
+            L.marker([-81.93, -184], {icon: picnicIcon})
+                .bindPopup(`<h1>Palmer Overlook Picnic Spot</h1><img src="https://drive.google.com/uc?export=view&id=1KGta06DDE314cL5qXx4YSCHQwvakmMQ6" width="100%" max-width="300px"><p>Come and have a sandwich with your friends. Has 2 picnic tables and a great view of the whole of Palmer.</p>`)
+                .addTo(picnic);
+            L.marker([-76.58, -110.37], {icon: picnicIcon})
+                .bindPopup(`<h1>Quimby Place Picnic Spot</h1><img src="https://drive.google.com/uc?export=view&id=1xyRjpKbGpg8bt1XFwJh4VYaTGld1K7DC" width="100%" max-width="300px"><p>Come and have a sandwich with your friends. Has 1 picnic table and a great view of the whole of Palmer.</p>`)
+                .addTo(picnic);
+            L.marker([-81.84, -168.6], {icon: picnicIcon})
+                .bindPopup(`<h1>Palmer Tram Station Picnic Spot</h1><img src="https://drive.google.com/uc?export=view&id=177Nn2Z17OF4sJ3FVGV97vsWzJzy9_Szt" width="100%" max-width="300px"><p>Come and have a sandwich with your friends. Has 3 picnic tables and a great view of the whole of Palmer, while also providing great accessibility with a bus stop and the Palmer Tram Station being right next to the picnic spot.</p>`)
+                .addTo(picnic);
+            L.marker([39.33, -145.7], {icon: picnicIcon})
+                .bindPopup(`<h1>RNG Island Picnic Spot</h1><img src="https://drive.google.com/uc?export=view&id=12Wwp-UJOdql7-ze9S7kGntjt33ygmE3W" width="100%" max-width="300px"><p>Come and have a sandwich with your friends. Has 4 picnic tables and a great view of Sterling and the roof of the main RNG building.</p>`)
+                .addTo(picnic);
+            L.marker([-80.08, -123.88], {icon: parkIcon})
+                .bindPopup(`<h1>Palmer Apartments Park</h1><img src="https://drive.google.com/uc?export=view&id=10d0VUoyzGkqGKStHPpC-QLXTH7mqy1C-" width="100%" max-width="300px"><p>One of two city parks in the county with 4 picnic tables and a lake. Legend has it you can see the Ridgeway Park Service patrolling near here.</p>`)
+                .addTo(park);
+            L.marker([-82.54, -153.54])
+                .bindPopup(`<h1>Palmer Beach</h1><img src="https://drive.google.com/uc?export=view&id=1vBDoeanIjfgqaOzuZJPOpgW_PzXNom9R" width="100%" max-width="300px"><p>A good place to come dump your dupe stash or watch the water while hearing gunshots behind you.</p>`)
+                .addTo(misc);
+            L.marker([-57.44, -174.44])
+                .bindPopup(`<h1>Palmer Dam</h1><img src="https://drive.google.com/uc?export=view&id=1zBuhDTW4bVhHCTA7CWGSyj8Y-ryv0fR6" width="100%" max-width="300px"><p>I don't know man, three waterfalls in one? Just don't slip.</p>`)
+                .addTo(misc);
+            L.marker([-83.52, -169.5])
+                .bindPopup(`<h1>Palmer Pier</h1><img src="https://drive.google.com/uc?export=view&id=1P9HeaaKlEAo56vkx02pSv-3I9T-wW6wf" width="100%" max-width="300px"><p>Watch water, sit at the picnic table, and pray to god that you don't fall through the ocean while swimming.</p>`)
+                .addTo(misc);
+            L.marker([-63.09, -146.38])
+                .bindPopup(`<h1>Palmer Waterfall</h1><img src="https://drive.google.com/uc?export=view&id=1xm-LcB2Bi4-r1v48szE4KH8EYqzILIQD" width="100%" max-width="300px"><p>Big water, fall fast. Cool bridge, some palms. Do not suggest swimming near here.</p>`)
+                .addTo(misc);
+            L.marker([77.16, -116.54])
+                .bindPopup(`<h1>Sterling Memorial Bridge</h1><img src="https://drive.google.com/uc?export=view&id=1uQEmUBPghHFcxYSpGGixl16Qq5vTXIlT" width="100%" max-width="300px"><p>A real cool bridge, the biggest in fact. Be careful while climbing though, many accidents have happened.</p>`)
+                .addTo(misc);
+            L.marker([61.2, -193.2], {icon: govIcon})
+                .bindPopup(`<h1>Sterling Trainyard</h1><img src="https://drive.google.com/uc?export=view&id=1yWh5A6E1gMil8Q8UNEjzZQ93LR8mL1hG" width="100%" max-width="300px"><p>Home to SQX. A wild Squareheaddude may appear telling you to get off his trains.</p>`)
+                .addTo(government);
+            L.marker([-79.788958,-177.055664], {icon: busIcon})
+                .bindPopup(`<b>RCTA Terminal</b><p>Serves:<ul><li style="color:#03AE48">County Route</li><li style="color:red">Connection Route</li><li style="color:purple">Palmer Route</li></ul></p>`)
+                .addTo(transit);
+            L.marker([-81.367885,-165.08606], {icon: busIcon})
+                .bindPopup(`<b>Palmer Tram Station</b><p>Serves:<ul><li style="color:#03AE48">County Route</li><li style="color:purple">Palmer Route</li></ul></p>`)
+                .addTo(transit);
+            L.marker([-79.661584,-147.996826], {icon: busIcon})
+                .bindPopup(`<b>Palmer Car Dealership</b><p>Serves:<ul><li style="color:#03AE48">County Route</li><li style="color:red">Connection Route</li><li style="color:purple">Palmer Route</li></ul></p>`)
+                .addTo(transit);
+            L.marker([-72.633374,-139.790039], {icon: busIcon})
+                .bindPopup(`<b>Ridgeway County Hall</b><p>Serves:<ul><li style="color:#03AE48">County Route</li><li style="color:purple">Palmer Route</li></ul></p>`)
+                .addTo(transit);
+            L.marker([-80.12987,-159.301758], {icon: busIcon})
+                .bindPopup(`<b>Palmer Police Station</b><p>Serves:<ul><li style="color:#03AE48">County Route</li><li style="color:purple">Palmer Route</li></ul></p>`)
+                .addTo(transit);
+            L.marker([-68.366801,-77.585449], {icon: busIcon})
+                .bindPopup(`<b>Palmer International Airport</b><p>Serves:<ul><li style="color:#03AE48">County Route</li><li style="color:purple">Palmer Route</li></ul></p>`)
+                .addTo(transit);
+            L.marker([67.900354,-185.537109], {icon: busIcon})
+                .bindPopup(`<b>RCSO Substation / Sterling Gun Club</b><p>Serves:<ul><li style="color:#03AE48">County Route</li><li style="color:red">Connection Route</li></ul></p>`)
+                .addTo(transit);
+            L.marker([56.389584,-183.955078], {icon: busIcon})
+                .bindPopup(`<b>Sterling Car Dealership</b><p>Serves:<ul><li style="color:#03AE48">County Route</li><li style="color:red">Connection Route</li></ul></p>`)
+                .addTo(transit);
+            L.marker([43.834527,-105.117188], {icon: busIcon})
+                .bindPopup(`<b>RNG Military Base</b><p>Serves:<ul><li style="color:#03AE48">County Route</li></ul><b>Stops only on request.</b></p>`)
+                .addTo(transit);
+            L.marker([74.27761,-31.333008], {icon: busIcon})
+                .bindPopup(`<b>Alder Mtn. County Park Entrance</b><p>Serves:<ul><li style="color:#03AE48">County Route</li></ul></p>`)
+                .addTo(transit);
+            L.marker([33.760882,148.754883], {icon: busIcon})
+                .bindPopup(`<b>RPS Ranger Station</b><p>Serves:<ul><li style="color:#03AE48">County Route</li></ul></p>`)
+                .addTo(transit);
+            L.marker([-22.897683,-81.057129], {icon: busIcon})
+                .bindPopup(`<b>Oakland Gas Station</b><p>Serves:<ul><li style="color:#03AE48">County Route</li></ul></p>`)
+                .addTo(transit);
+            L.marker([-23.725012,-145.986328], {icon: busIcon})
+                .bindPopup(`<b>RCSO Headquarters</b><p>Serves:<ul><li style="color:#03AE48">County Route</li></ul></p>`)
+                .addTo(transit);
+            var tramRoute = L.polyline([[-81.697844,-162.333984],[-81.691497,-155.170898],[-81.697844,-150.996094],[-81.634149,-146.030273],[-81.518272,-139.526367],[-81.459737,-137.592773],[-81.321593,-135.703125],[-81.174491,-134.824219],[-80.921494,-133.769531],[-80.63274,-132.802734],[-80.386396,-132.495117],[-80.133635,-132.495117],[-79.874297,-132.363281],[-79.624056,-132.055664],[-79.343349,-131.660156],[-79.038437,-131.088867],[-78.673242,-130.913086],[-77.897255,-131.000977],[-72.168351,-130.935059],[-71.711989,-130.803223],[-71.321915,-130.517578],[-70.837461,-130.03418],[-70.214875,-129.111328],[-69.287257,-127.089844],[-68.512143,-124.694824],[-65.55846,-115.949707],[-64.71788,-114.521484],[-63.918058,-113.818359],[-63.332413,-113.642578],[-62.875188,-113.620605],[-62.522458,-113.554688],[-62.134708,-113.291016],[-61.773123,-112.91748],[-61.48076,-112.324219],[-61.175033,-111.665039],[-60.962444,-110.808105],[-60.844911,-109.863281],[-60.737686,-105.820313],[-60.716198,-103.095703],[-60.812781,-102.041016],[-60.962444,-101.140137],[-61.280793,-100.129395],[-64.557881,-91.07666],[-64.970064,-89.362793],[-65.238307,-88.26416],[-65.522068,-87.099609],[-65.937514,-85.935059],[-66.39916,-84.880371],[-66.774586,-84.155273],[-67.305976,-83.408203],[-68.26125,-82.331543],[-69.084257,-82.155762],[-70.851881,-82.089844]], {
+                color: '#39BECD'
+            })
+                .addTo(transit);
+            tramRoute.setText('  Palmer - Palmer International Airport  ', {repeat: true, center: true, attributes: {fill: 'white'}});
+            var countyRoute = L.polyline([[-79.796745,-177.099609],[-79.734281,-179.384766],[-79.383905,-179.824219],[-79.000771,-180.043945],[-78.848821,-180.065918],[-78.844571,-173.012695],[-81.295029,-173.034668],[-81.291703,-166.948242],[-81.357986,-165.959473],[-81.367885,-165.080566],[-81.288376,-162.79541],[-81.308321,-148.40332],[-80.080785,-148.40332],[-79.943595,-148.051758],[-79.600285,-147.98584],[-79.472592,-148.359375],[-78.797712,-148.359375],[-78.797712,-145.129395],[-78.707714,-144.140625],[-78.707714,-139.921875],[-72.593979,-139.812012],[-70.663607,-139.768066],[-70.670881,-143.833008],[-70.78691,-145.986328],[-70.952528,-148.447266],[-71.009811,-150.270996],[-70.995506,-151.721191],[-70.909456,-153.435059],[-70.851881,-155.148926],[-70.844673,-157.91748],[-73.76964,-158.093262],[-74.265698,-158.554688],[-74.764299,-158.620605],[-77.307693,-158.708496],[-77.739618,-159.213867],[-80.124218,-159.279785],[-81.295029,-159.257813],[-81.305,-146.513672],[-81.224915,-144.865723],[-81.208139,-123.728027],[-81.194695,-122.102051],[-81.093214,-120.19043],[-80.907616,-118.234863],[-80.437633,-115.598145],[-80.069424,-114.477539],[-79.702907,-114.125977],[-72.355789,-113.862305],[-71.371109,-113.730469],[-70.743478,-113.554688],[-69.809309,-113.071289],[-69.068563,-112.587891],[-68.253111,-111.884766],[-67.558948,-110.961914],[-67.067433,-109.819336],[-66.687784,-108.500977],[-66.142743,-106.611328],[-65.694476,-104.941406],[-65.494741,-102.568359],[-65.458261,-99.711914],[-65.458261,-94.833984],[-65.494741,-92.329102],[-65.549367,-90.571289],[-65.874725,-88.813477],[-66.460663,-87.011719],[-67.238062,-85.869141],[-68.269387,-85.605469],[-69.084257,-85.825195],[-70.155288,-86.044922],[-70.916641,-86.264648],[-71.441171,-86.132813],[-71.842539,-85.561523],[-72.073911,-84.550781],[-72.248917,-83.276367],[-72.195246,-81.694336],[-71.965388,-80.332031],[-71.524909,-78.925781],[-70.902268,-78.618164],[-70.065585,-78.662109],[-69.380313,-77.958984],[-68.926811,-77.519531],[-68.171555,-77.563477],[-67.916881,-78.024902],[-65.146115,-77.980957],[-64.727262,-78.42041],[-64.043363,-80.178223],[-63.616982,-81.430664],[-63.56812,-82.858887],[-63.811592,-84.946289],[-64.368438,-88.725586],[-64.811557,-91.955566],[-64.923542,-94.54834],[-64.867608,-97.229004],[-64.970064,-98.261719],[-65.136878,-99.975586],[-65.155348,-102.546387],[-65.265902,-103.688965],[-65.394298,-105.13916],[-65.658275,-106.567383],[-66.62684,-109.841309],[-67.024588,-110.852051],[-67.500161,-111.708984],[-68.097907,-112.521973],[-68.879358,-113.334961],[-69.763757,-113.862305],[-70.772443,-114.56543],[-71.944969,-114.65332],[-71.958584,-117.839355],[-71.931344,-120.454102],[-71.842539,-123.068848],[-71.615214,-126.14502],[-71.251419,-129.616699],[-71.059798,-131.330566],[-70.757966,-134.560547],[-70.670881,-136.625977],[-70.65633,-139.768066],[-70.667244,-143.833008],[-70.78691,-145.986328],[-70.952528,-148.447266],[-71.009811,-150.270996],[-70.995506,-151.732178],[-70.909456,-153.424072],[-70.855485,-155.148926],[-70.844673,-157.91748],[-70.887885,-160.861816],[-70.966864,-163.916016],[-71.081182,-166.35498],[-71.335983,-170.134277],[-71.587473,-173.737793],[-71.787681,-178.17627],[-71.82884,-182.285156],[-68.097907,-181.911621],[-64.033744,-181.757813],[-59.198439,-181.845703],[-55.603178,-181.801758],[-49.410973,-181.82373],[-44.933696,-181.889648],[-39.402244,-181.933594],[-35.496456,-181.977539],[-32.287133,-181.977539],[-28.22697,-181.625977],[-24.066528,-181.362305],[-16.846605,-181.054687],[-11.329253,-181.098633],[-9.514079,-181.054687],[-6.948239,-180.439453],[-4.959615,-180.087891],[-2.635789,-179.912109],[1.955187,-179.868164],[4.82826,-179.978027],[9.232249,-180.263672],[14.51978,-180.483398],[16.045813,-180.505371],[24.387127,-178.989258],[28.149503,-178.483887],[33.797409,-178.044434],[38.186387,-178.461914],[43.245203,-178.967285],[46.164614,-179.077148],[48.908059,-179.230957],[50.805935,-179.472656],[50.792047,-169.936523],[54.41893,-169.892578],[56.728622,-169.541016],[63.114638,-169.277344],[66.722541,-169.672852],[68.656555,-170.15625],[69.364831,-170.310059],[72.302431,-170.354004],[72.305771,-185.800781],[69.217202,-185.756836],[67.809245,-185.515137],[65.311829,-185.009766],[60.250716,-184.63623],[57.692406,-184.284668],[56.298253,-183.922119],[50.007739,-181.669922],[47.15984,-180.834961],[43.229195,-179.956055],[38.065392,-179.230957],[33.687782,-178.879395],[26.804461,-179.450684],[27.936181,-159.411621],[28.343065,-153.764648],[29.036961,-148.447266],[31.052934,-140.229492],[33.979809,-130.166016],[43.961191,-104.765625],[46.980252,-96.899414],[48.224673,-91.713867],[48.922499,-87.84668],[49.410973,-83.100586],[50.120578,-76.508789],[50.401515,-75.102539],[54.851315,-76.816406],[55.751849,-76.860352],[61.375673,-75.717773],[68.334376,-70.224609],[70.065585,-67.368164],[70.916641,-65.258789],[72.435535,-59.80957],[72.984054,-57.612305],[73.390781,-55.458984],[73.627789,-53.789063],[74.140084,-48.779297],[74.259738,-46.538086],[74.331108,-42.84668],[74.354828,-36.694336],[74.271655,-31.289063],[73.983207,-22.675781],[73.849286,-19.731445],[73.714276,-17.446289],[73.302624,-13.491211],[72.514931,-8.745117],[71.869909,-5.756836],[72.15489,-4.350586],[73.048236,7.042236],[74.472903,27.641602],[74.555037,29.970703],[74.54333,31.552734],[74.472903,32.783203],[74.366675,34.233398],[74.104015,35.947266],[72.38241,43.637695],[71.767067,46.230469],[71.145195,48.691406],[70.568803,51.723633],[69.900118,56.513672],[69.519147,58.447266],[68.895187,60.205078],[53.514185,78.706055],[52.187405,80.024414],[51.124213,81.738281],[50.205033,84.506836],[49.75288,87.670898],[47.754098,117.509766],[47.487513,120.9375],[47.279229,122.915039],[46.950262,125.024414],[46.255847,127.836914],[45.305803,130.913086],[44.465151,133.242188],[42.228517,137.329102],[38.891033,142.69043],[37.335224,144.975586],[34.415973,148.359375],[31.428663,150.512695],[28.22697,152.446289],[20.838278,155.522461],[22.755921,156.884766],[25.204941,157.719727],[28.921631,157.939453],[34.560859,157.763672],[38.203655,157.368164],[41.277806,155.874023],[45.367584,153.325195],[47.931066,151.435547],[49.296472,150.270996],[50.63901,149.018555],[51.781436,147.436523],[52.629729,146.030273],[53.501117,144.008789],[54.329338,141.569824],[55.341642,137.592773],[56.218923,134.077148],[57.052682,130.759277],[58.077876,126.430664],[58.378679,124.848633],[58.35563,123.354492],[58.135921,121.92627],[57.562995,120.432129],[56.944974,119.685059],[56.194481,119.091797],[48.210032,117.751465],[50.219095,87.780762],[50.499452,85.473633],[50.819818,84.001465],[51.399206,82.55127],[51.971346,81.320801],[52.908902,80.178223],[66.49574,65.67627],[69.005675,60.952148],[69.526834,59.633789],[69.990535,57.634277],[71.173578,49.932861],[74.223935,36.628418],[74.502285,34.936523],[74.630926,33.442383],[74.729615,31.860352],[74.764299,30.651855],[74.746967,29.333496],[74.68325,27.993164],[72.462039,-3.735352],[72.269003,-5.185547],[72.040066,-6.481934],[69.565226,2.285156],[68.431513,5.185547],[66.75725,8.701172],[65.403445,10.678711],[63.489767,13.31543],[61.164437,15.688477],[59.822732,16.611328],[58.101105,17.138672],[56.486762,17.490234],[54.977614,17.402344],[33.870416,17.490234],[31.578535,17.490234],[25.165173,18.105469],[23.926013,18.193359],[22.836946,17.929688],[21.779905,17.358398],[20.756114,16.347656],[18.479609,13.623047],[17.978733,12.348633],[10.833306,-15.556641],[10.09867,-17.885742],[9.362353,-19.951172],[8.537565,-23.027344],[7.841615,-27.421875],[7.841615,-29.53125],[8.450639,-32.167969],[10.660608,-40.166016],[14.030015,-48.273926],[14.902322,-50.075684],[15.390136,-52.624512],[15.45368,-54.536133],[15.284185,-55.722656],[14.902322,-57.282715],[14.285677,-58.754883],[13.325485,-60.380859],[12.554564,-61.721191],[12.060809,-63.479004],[11.845847,-65.10498],[11.824341,-66.51123],[9.058702,-66.269531],[7.972198,-66.115723],[6.8828,-65.917969],[5.747174,-65.895996],[4.609278,-65.961914],[3.359889,-66.269531],[1.647722,-66.687012],[-0.263671,-67.412109],[-2.174771,-67.961426],[-2.921097,-68.049316],[-4.477856,-68.334961],[-8.798225,-68.675537],[-11.544616,-68.994141],[-13.710035,-69.411621],[-15.093339,-69.829102],[-16.446622,-70.444336],[-17.769612,-71.455078],[-19.103648,-72.641602],[-20.262197,-74.223633],[-21.248422,-75.981445],[-22.024546,-78.00293],[-22.796439,-80.332031],[-23.160563,-82.397461],[-23.443089,-84.858398],[-23.503552,-139.592285],[-23.684774,-144.580078],[-23.905927,-148.007813],[-24.026397,-149.941406],[-24.487149,-153.127441],[-25.641526,-157.324219],[-26.411551,-159.213867],[-30.278044,-167.541504],[-31.306715,-171.265869],[-31.569175,-173.419189],[-31.372399,-181.384277],[-31.334871,-182.680664],[-35.46067,-182.768555],[-39.504041,-182.768555],[-45.02695,-182.8125],[-49.582226,-182.724609],[-55.875311,-182.8125],[-59.377988,-182.724609],[-64.206377,-182.680664],[-68.122482,-182.680664],[-72.335798,-182.966309],[-73.201317,-183.164063],[-74.913708,-183.208008],[-78.304955,-183.427734],[-78.754945,-183.405762],[-79.335219,-183.47168],[-79.659613,-183.493652],[-80.012423,-183.076172],[-80.368031,-182.285156],[-80.636316,-181.296387],[-80.865854,-180.439453],[-81.052297,-179.25293],[-81.184599,-177.868652],[-81.291703,-176.220703],[-81.314959,-174.089355],[-81.295029,-171.793213],[-80.966455,-172.001953],[-79.771414,-172.045898],[-79.794799,-177.088623]], {
+                color: '#03AE48'
+            })
+                .bindPopup(`County/Green Route`)
+                .addTo(transit);
+            countyRoute.setText('  ▶  ', {repeat: true, center: true, attributes: {fill: '#03AE48'}});
+            var connectionRoute = L.polyline([[-79.794799,-177.077637],[-79.736238,-179.373779],[-79.371754,-179.846191],[-79.004962,-180.054932],[-78.848821,-180.087891],[-78.844571,-173.001709],[-78.870048,-159.23584],[-81.293366,-159.268799],[-81.305,-148.40332],[-80.086461,-148.414307],[-79.947431,-148.062744],[-79.600781,-147.98584],[-79.469581,-148.364868],[-78.411369,-148.392334],[-78.411369,-182.362061],[-71.80141,-182.329102],[-70.214875,-182.109375],[-67.759398,-181.845703],[-63.87939,-181.757813],[-59.355596,-181.845703],[-55.391592,-181.845703],[-49.681847,-181.845703],[-39.876019,-181.933594],[-35.746512,-181.889648],[-33.100745,-182.021484],[-31.391158,-181.801758],[-28.613459,-181.669922],[-22.309426,-181.318359],[-13.603278,-181.098633],[-9.557417,-181.07666],[-4.915833,-180.087891],[-1.779499,-179.912109],[5.725311,-180.065918],[12.254128,-180.395508],[16.151369,-180.527344],[26.94166,-178.659668],[33.797409,-178.066406],[43.165123,-178.945312],[50.819818,-179.472656],[50.805935,-169.925537],[54.635697,-169.870605],[56.944974,-169.541016],[61.132629,-169.365234],[63.371832,-169.299316],[66.425537,-169.650879],[68.997802,-170.244141],[69.952909,-170.332031],[72.302431,-170.354004],[72.309109,-185.778809],[69.457554,-185.778809],[67.92514,-185.515137],[65.910623,-185.119629],[64.0722,-184.921875],[60.163376,-184.63623],[58.101105,-184.350586],[57.195808,-184.174805],[56.413901,-183.955078],[47.040182,-180.834961],[43.229195,-179.978027],[37.370157,-179.187012],[33.706063,-178.879395],[26.784847,-179.450684],[16.678293,-181.318359],[15.114553,-181.40625],[13.325485,-181.40625],[5.615986,-180.791016],[1.559866,-180.571289],[-1.845384,-180.593262],[-4.784469,-180.834961],[-8.798225,-181.625977],[-9.795678,-181.757813],[-10.682201,-181.845703],[-13.710035,-181.82373],[-22.360236,-182.15332],[-27.000408,-182.285156],[-28.748397,-182.460937],[-31.334871,-182.658691],[-33.082337,-182.724609],[-35.924645,-182.790527],[-39.993956,-182.768555],[-49.710273,-182.724609],[-55.429013,-182.834473],[-59.422728,-182.724609],[-63.874553,-182.69165],[-67.834128,-182.680664],[-71.978988,-182.944336],[-73.156808,-183.14209],[-73.434689,-183.186035],[-78.754945,-183.405762],[-79.335219,-183.47168],[-79.659613,-183.493652],[-80.012423,-183.076172],[-80.368031,-182.285156],[-80.636316,-181.296387],[-80.865854,-180.439453],[-81.052297,-179.25293],[-81.184599,-177.868652],[-81.291703,-176.220703],[-81.314959,-174.089355],[-81.295029,-171.793213],[-80.966455,-172.001953],[-79.771414,-172.045898],[-79.794799,-177.088623]], {
+                color: 'red'
+            })
+                .bindPopup(`Connection/Red Route`)
+                .addTo(transit);
+            connectionRoute.setText('  ▶  ', {repeat: true, center: true, attributes: {fill: 'red'}});
+            var palmerRoute = L.polyline([[-79.793825,-177.06665],[-79.73526,-179.379272],[-79.37378,-179.837952],[-78.849883,-180.076904],[-78.844571,-173.001709],[-81.294198,-173.034668],[-81.291703,-166.970215],[-81.357986,-165.942993],[-81.366236,-165.064087],[-81.288376,-162.800903],[-81.304169,-148.408813],[-80.090243,-148.425293],[-79.940717,-148.057251],[-79.600285,-147.98584],[-79.469581,-148.364868],[-78.797712,-148.364868],[-78.795578,-145.107422],[-78.703411,-144.140625],[-78.706639,-139.921875],[-70.880689,-139.779053],[-70.866291,-137.043457],[-70.923824,-135.285645],[-71.045529,-133.59375],[-71.25848,-131.418457],[-71.476106,-129.770508],[-71.705093,-127.617188],[-71.876745,-125.48584],[-71.978988,-123.903809],[-72.100944,-121.333008],[-72.127936,-118.586426],[-72.124564,-113.840332],[-71.455153,-113.730469],[-71.081182,-113.620605],[-70.013078,-113.181152],[-69.115611,-112.653809],[-68.4638,-112.08252],[-67.684429,-111.137695],[-67.221053,-110.280762],[-67.05887,-109.775391],[-65.730626,-104.985352],[-65.485626,-102.513428],[-65.453697,-94.713135],[-65.54027,-90.582275],[-65.847768,-88.945313],[-66.460663,-86.989746],[-67.204032,-85.891113],[-68.26125,-85.627441],[-70.837461,-86.286621],[-71.448163,-86.132813],[-71.849385,-85.561523],[-72.073911,-84.528809],[-72.242216,-83.342285],[-72.201963,-81.672363],[-71.944969,-80.266113],[-71.497037,-78.925781],[-70.862689,-78.596191],[-70.084305,-78.673096],[-68.926811,-77.519531],[-68.16747,-77.541504],[-67.908619,-78.024902],[-65.132258,-77.980957],[-64.731952,-78.42041],[-63.607217,-81.452637],[-63.565675,-82.853394],[-63.821288,-85.023193],[-64.802204,-91.922607],[-64.909569,-94.504395],[-64.862941,-97.229004],[-65.134568,-99.959106],[-65.150732,-102.5354],[-65.39201,-105.133667],[-65.649216,-106.556396],[-66.648623,-109.907227],[-67.020299,-110.852051],[-67.495957,-111.665039],[-68.106102,-112.543945],[-68.883316,-113.334961],[-70.801366,-114.587402],[-71.944969,-114.65332],[-71.951778,-118.630371],[-71.924528,-120.388184],[-71.849385,-123.09082],[-71.594412,-126.23291],[-71.237289,-129.70459],[-71.066928,-131.19873],[-70.757966,-134.527588],[-70.670881,-136.582031],[-70.652691,-139.768066],[-70.65633,-143.635254],[-70.794139,-146.030273],[-70.923824,-148.029785],[-70.98119,-149.501953],[-71.009811,-150.732422],[-70.98119,-151.984863],[-70.909456,-153.566895],[-70.851881,-155.039063],[-70.844673,-157.939453],[-73.757352,-158.093262],[-74.247813,-158.554688],[-77.278694,-158.730469],[-77.725612,-159.191895],[-81.127169,-159.279785],[-81.144099,-171.97998],[-79.769463,-172.045898],[-79.796745,-177.077637]], {
+                color: 'purple'
+            })
+                .bindPopup(`Palmer/Purple Route`)
+                .addTo(transit);
+            palmerRoute.setText('  ▶  ', {repeat: true, center: true, attributes: {fill: 'purple'}});
             var overlookRoad = L.polyline([[-72.646486,-182.680664],[-72.874402,-184.350586],[-73.578167,-186.723633],[-73.971078,-187.426758],[-76.221675,-188.85498],[-76.750473,-189.162598],[-77.210776,-189.18457],[-77.739618,-188.986816],[-78.376004,-188.415527],[-79.331152,-186.394043],[-79.68325,-185.800781],[-80.441282,-185.141602],[-80.718183,-184.614258],[-80.983688,-183.55957],[-82.223142,-173.254395],[-82.352877,-171.14502],[-82.379147,-169.299316],[-82.338243,-167.365723],[-82.255779,-165.761719],[-82.160454,-164.619141],[-82.139447,-163.608398],[-82.157457,-157.587891],[-82.172433,-153.69873],[-82.178416,-150.424805],[-82.136441,-148.40332],[-81.842522,-139.174805],[-81.811285,-137.680664],[-81.792486,-136.274414],[-81.748454,-134.033203],[-81.653308,-132.451172],[-81.479293,-131.176758],[-81.174491,-130.341797]])
                 .bindTooltip(`Speed Limit: 30 SPS`)
                 .addTo(street);
@@ -562,6 +724,83 @@
                 {offset: 15, repeat: 120, symbol: L.Symbol.marker({markerOptions: {icon: icon_395}})}
                 ]
             }).addTo(street);
+            L.polyline([[-76.247817,-188.833008],[-77.029559,-187.646484],[-77.523122,-186.943359],[-77.9799,-186.591797],[-78.411369,-185.273438],[-78.655967,-182.988281]])
+                .addTo(street);
+            L.polyline([[-78.034688,-188.701172],[-78.215541,-190.678711],[-78.406954,-191.57959],[-78.582257,-192.062988],[-78.789171,-192.062988],[-79.282227,-191.623535],[-79.548595,-191.337891],[-80.557338,-188.876953],[-81.469521,-186.086426],[-81.678787,-185.712891],[-81.858097,-185.690918],[-82.015276,-185.251465],[-82.181406,-184.174805],[-82.178416,-183.295898],[-82.073059,-182.8125],[-81.929358,-182.614746],[-81.792486,-183.098145],[-81.713693,-184.064941],[-81.669241,-185.031738],[-81.674811,-185.712891]])
+                .addTo(street);
+            L.polyline([[-81.20142,-163.87207],[-81.704187,-163.78418],[-81.895354,-164.377441],[-82.063963,-164.53125],[-82.151458,-164.355469]])
+                .addTo(street);
+            L.polyline([[-78.651644,-134.296875],[-80.375381,-134.648438],[-80.550126,-134.868164],[-80.711093,-135.263672],[-80.848397,-136.40625],[-81.181231,-139.174805]])
+                .addTo(street);
+            L.polyline([[-76.079668,-108.237305],[-75.737303,-109.072266],[-75.152043,-111.357422]])
+                .addTo(street);
+            L.polyline([[-39.943436,-96.855469],[-41.112469,-97.646484],[-42.972502,-100.415039],[-44.024422,-101.601562],[-45.859412,-102.128906],[-46.830134,-102.216797],[-48.312428,-101.469727],[-49.75288,-101.074219],[-52.160455,-100.546875],[-55.478853,-100.283203],[-56.776808,-99.667969],[-59.400365,-99.008789],[-61.501734,-98.173828],[-62.955223,-97.382812],[-65.284282,-97.536621]])
+                .bindTooltip(`Private Road. Closed to both vehicles and pedestrians.`)
+                .addTo(street);
+            L.polyline([[-23.865745,-121.442871],[-22.471955,-119.509277],[-20.488773,-117.619629],[-19.12441,-116.762695],[-17.644022,-116.367187],[-15.623037,-116.608887],[-14.54105,-117.399902],[-14.221789,-119.685059],[-14.54105,-124.892578],[-14.98724,-126.518555],[-15.580711,-127.419434]])
+                .addTo(street);
+            L.polyline([[50.819818,-187.075195],[50.569283,-191.90918],[50.176898,-195.952148],[51.261915,-197.314453],[54.393352,-197.929688],[56.413901,-198.149414],[58.927334,-198.28125],[60.898388,-198.259277],[62.965212,-198.588867],[64.774125,-199.02832],[66.284537,-199.160156],[67.709445,-198.852539],[69.131271,-198.303223],[70.808591,-197.797852],[71.552741,-197.468262],[71.86307,-196.523438],[72.04684,-195.205078],[72.114445,-193.183594],[72.100944,-190.437012]])
+                .addTo(street);
+            L.polyline([[51.289406,-197.358398],[51.316881,-211.464844]])
+                .addTo(street);
+            L.polyline([[51.289406,-201.884766],[70.931004,-202.060547]])
+                .addTo(street);
+            L.polyline([[70.916641,-197.709961],[70.945356,-211.772461]])
+                .addTo(street);
+            L.polyline([[70.916641,-207.246094],[51.289406,-207.509766]])
+                .addTo(street);
+            L.polyline([[65.98227,-202.016602],[66.00015,-207.333984]])
+                .addTo(street);
+            L.polyline([[58.193871,-201.928711],[58.217025,-207.421875]])
+                .addTo(street);
+            L.polyline([[76.184995,-179.692383],[76.174498,-175.429688],[76.184995,-172.792969],[75.946901,-168.354492],[75.661318,-165.541992],[75.21946,-163.806152],[74.913708,-163.059082],[73.873717,-163.037109],[73.434689,-163.234863],[72.744522,-164.223633],[72.428903,-164.223633],[71.787681,-163.740234],[68.269387,-163.674316],[66.739902,-163.234863],[64.623877,-162.861328],[62.552857,-162.509766],[61.564574,-162.905273],[60.522158,-162.685547],[56.438204,-162.773438],[53.800651,-162.993164],[52.749594,-163.608398],[51.75424,-165.629883],[50.999929,-168.596191],[50.951506,-170.288086]])
+                .addTo(street);
+            L.polyline([[36.173357,-125.332031],[41.442726,-125.068359],[45.336702,-125.244141],[48.69096,-126.474609],[50.078295,-126.298828],[51.344339,-125.90332],[54.470038,-124.365234],[57.610107,-121.948242],[58.722599,-120.629883],[60.196156,-118.081055],[61.918271,-114.125977],[62.613562,-111.577148],[63.074866,-109.599609],[63.174194,-107.270508],[63.015106,-105.249023],[62.714462,-103.623047],[62.165502,-101.645508],[60.326948,-97.998047],[59.198439,-96.635742],[56.992883,-95.932617],[55.354135,-95.756836],[53.409532,-96.767578],[52.536273,-97.250977],[51.781436,-97.954102],[50.176898,-97.954102],[49.239121,-97.602539],[47.457809,-96.196289]])
+                .addTo(street);
+            L.polyline([[52.709675,-97.141113],[50.625073,-91.054688],[49.095452,-88.330078]])
+                .addTo(street);
+            L.polyline([[46.316584,-99.624023],[45.182037,-97.558594],[43.165123,-93.55957],[41.244772,-91.40625],[40.747257,-90.263672],[40.346544,-88.110352],[39.504041,-85.473633],[37.474858,-81.430664],[36.22655,-80.617676],[34.288992,-80.551758],[32.546813,-80.024414],[30.977609,-79.365234],[28.497661,-77.67334],[24.427145,-74.597168]])
+                .addTo(street);
+            L.polyline([[36.208823,-80.639648],[38.08269,-78.464355],[41.14557,-75.695801],[43.882057,-74.553223],[45.73686,-73.652344]])
+                .addTo(street);
+            L.polyline([[46.195042,-99.84375],[59.601095,-111.84082]])
+                .addTo(street);
+            L.polyline([[52.106505,-106.875],[53.566414,-102.392578],[54.572062,-101.162109],[56.728622,-100.50293],[57.63364,-100.942383],[59.288332,-102.744141],[60.239811,-104.414063],[60.780619,-107.138672],[60.565379,-109.6875],[59.64554,-111.884766],[57.06463,-117.114258],[56.24335,-118.037109],[51.37178,-121.289063],[50.176898,-121.464844],[48.312428,-120.102539],[47.606163,-119.663086],[52.093008,-106.875]])
+                .addTo(street);
+            L.polyline([[74.496413,-39.418945],[73.440953,-36.782227],[72.593979,-34.365234],[71.53883,-33.178711],[70.801366,-30.849609],[70.363091,-27.817383],[70.110485,-22.587891],[69.748551,-19.599609],[69.131271,-18.369141],[68.366801,-18.720703],[67.742759,-20.874023],[67.491751,-24.873047],[67.542167,-28.125],[68.122482,-32.255859],[68.155209,-36.870117],[67.958148,-40.297852],[67.575717,-45.74707],[67.474922,-46.889648],[67.169955,-50.009766],[66.51326,-57.700195],[66.018018,-62.556152],[65.311829,-64.335938],[64.75539,-64.379883],[64.301822,-63.852539],[64.052978,-62.53418],[64.187249,-58.139648],[64.54844,-51.416016],[64.736641,-48.911133],[64.979359,-45.65918],[65.275094,-41.352539],[65.348514,-36.342773],[65.385147,-32.124023],[65.256706,-30.058594],[64.736641,-25.488281],[64.014496,-21.884766],[63.391522,-20.610352],[62.935235,-21.181641],[62.895218,-34.013672],[63.253412,-40.913086],[63.21383,-45.043945],[62.915233,-48.251953],[62.308794,-53.085938],[61.48076,-55.371094],[57.797944,-61.699219],[55.279115,-64.599609],[53.87844,-65.302734],[52.321911,-65.478516],[49.296472,-65.654297],[47.665387,-65.083008],[44.182204,-62.578125],[42.423457,-61.479492],[40.380028,-60.380859],[38.169114,-58.491211],[35.782171,-56.777344],[34.016242,-54.931641],[33.100745,-52.998047],[32.694866,-50.712891],[32.324276,-48.713379],[31.222197,-47.416992],[28.439714,-45.900879],[25.681137,-44.428711],[23.32208,-41.879883],[22.350076,-39.243164],[22.22809,-36.430664],[22.024546,-33.310547],[22.268764,-30.146484],[23.644524,-26.894531],[26.076521,-22.719727],[27.683528,-20.126953],[28.806174,-20.654297],[29.496988,-22.675781],[29.22889,-25.620117],[29.190533,-28.520508],[29.878755,-29.926758],[35.317366,-33.662109],[42.130821,-37.485352],[44.902578,-31.992188],[47.989922,-27.685547],[51.563412,-24.960937],[53.774689,-25.048828],[55.702355,-26.542969],[56.920997,-29.926758],[57.088515,-37.836914],[56.848972,-42.319336],[56.36525,-47.15332],[55.998381,-48.823242],[56.383502,-49.394531],[56.46249,-50.317383],[56.26166,-51.218262],[55.825973,-51.503906],[55.304138,-51.49292],[54.800685,-51.064453],[54.316523,-49.96582],[52.295042,-49.658203],[50.485474,-48.911133],[48.312428,-47.724609],[46.800059,-45.878906],[45.089036,-42.670898],[44.590467,-40.825195],[42.163403,-37.485352]])
+                .addTo(street);
+            L.polyline([[74.431676,-34.387207],[72.600551,-34.365234]])
+                .addTo(street);
+            L.polyline([[56.010666,-48.834229],[55.720923,-48.504639],[55.254077,-48.570557],[54.882927,-48.88916],[54.431713,-49.515381],[54.322931,-49.954834]])
+                .addTo(street);
+            L.polyline([[44.606113,-40.847168],[45.197522,-39.462891],[45.890008,-36.870117],[47.279229,-33.464355],[49.339441,-29.729004],[49.965356,-28.366699],[50.064192,-26.147461]])
+                .addTo(street);
+            L.polyline([[58.170702,17.578125],[58.676938,20.961914]])
+                .addTo(street);
+            L.polyline([[56.474628,21.621094],[56.909002,21.159668],[58.676938,20.939941],[59.051856,21.577148],[60.489704,21.51123],[61.047651,20.478516],[64.576754,16.655273],[65.164579,16.237793],[66.124962,15.974121],[67.041735,16.040039],[68.253111,17.402344],[68.536276,18.830566],[68.576441,22.258301],[68.447662,23.444824],[67.659386,28.300781],[67.118748,32.519531],[65.5948,41.923828],[64.557881,46.713867],[62.965212,50.273438],[61.710706,50.800781],[56.812908,50.657959],[56.340901,51.064453],[54.939766,50.668945],[54.54658,50.141602],[53.13359,50.097656],[51.151786,48.933105],[49.109838,47.219238],[47.620975,44.780273],[46.042736,41.396484],[45.537137,38.891602],[45.305803,35.749512],[45.490946,23.24707],[45.874712,21.906738],[47.100045,21.269531],[55.677584,21.401367],[56.46856,21.621094]])
+                .addTo(street);
+            L.polyline([[47.189712,17.841797],[47.249407,21.269531]])
+                .addTo(street);
+            L.polyline([[60.46805,21.51123],[61.217379,22.653809],[66.843807,27.333984],[67.667737,28.234863]])
+                .addTo(street);
+            L.polyline([[56.46249,21.577148],[57.373938,23.730469],[55.973798,47.8125],[54.54658,50.097656]])
+                .addTo(street);
+            L.polyline([[59.063154,21.577148],[58.309489,22.895508],[57.856443,23.642578],[57.397624,23.686523]])
+                .addTo(street);
+            L.polyline([[56.812908,50.668945],[55.973798,47.768555]])
+                .addTo(street);
+            L.polyline([[49.296472,98.613281],[47.368594,99.667969],[45.614037,100.810547],[43.261206,102.875977],[36.491973,110.43457],[32.694866,112.631836]])
+                .addTo(street);
+            L.polyline([[57.231503,129.375],[59.265881,132.319336],[60.844911,135],[62.062733,140.229492],[63.509375,148.666992],[63.704722,154.379883],[63.956673,159.56543],[64.736641,163.520508],[64.699105,165.454102],[64.339908,168.09082],[63.548552,170.727539],[62.935235,173.496094],[61.773123,175.737305],[61.116713,176.253662],[60.478879,176.967773],[59.623325,179.560547],[59.198439,183.55957],[58.031372,187.075195],[56.872996,188.393555],[55.254077,188.876953],[51.124213,188.173828],[49.124219,187.207031],[47.070122,185.537109],[45.429299,183.076172],[43.548548,178.549805],[42.585444,177.011719],[40.747257,175.561523],[38.61687,174.199219],[37.68382,173.825684],[36.949892,172.924805],[35.38905,171.430664],[33.94336,170.683594],[32.546813,169.804688],[31.503629,168.398438],[31.203405,166.464844],[31.16581,164.047852],[30.751278,163.256836],[30.107118,162.421875],[26.902477,160.290527],[24.886436,158.928223],[24.066528,156.994629]])
+                .addTo(street);
+            L.polyline([[64.699105,165.410156],[67.617589,164.970703]])
+                .addTo(street);
+            L.polyline([[-41.640078,160.356445],[-41.607228,154.995117],[-42.130821,152.270508],[-42.55308,149.545898],[-42.455888,148.139648],[-41.607228,147.392578],[-40.747257,146.90918],[-39.368279,146.645508],[-38.065392,146.821289],[-37.195331,147.788086],[-36.809285,149.458008],[-37.160317,151.435547],[-37.753344,152.885742],[-38.891033,154.335938],[-40.279526,154.819336],[-41.623655,154.995117]])
+                .addTo(street);
+            L.polyline([[-47.398349,159.389648],[-47.070122,157.104492],[-46.739861,155.390625],[-45.859412,153.500977],[-44.964798,152.446289],[-43.92955,152.270508],[-42.972502,152.402344],[-42.098222,152.446289]])
+                .addTo(street);
+            L.polyline([[-40.713956,146.887207],[-41.327326,145.964355],[-42.342305,144.84375],[-43.723475,144.162598],[-45.011419,143.986816],[-46.346928,144.18457],[-47.457809,144.777832],[-48.107431,145.678711],[-48.56025,146.953125],[-48.618385,148.776855],[-48.443778,150.996094],[-47.945786,153.259277],[-47.41322,154.621582],[-46.7248,155.368652]])
+                .addTo(street);
             var baseMaps = {
                 "Sattelite": backgroundImage
             };
@@ -573,12 +812,16 @@
                 "Item Shops": shop,
                 "Housing": housing,
                 "ATMs": money_machine,
+                "Public Transit": transit,
+                "Parking": parking,
+                "Picnic Spots": picnic,
+                "City Parks": park,
                 "Law Enforcement": law_enforcement,
                 "Government": government,
                 "Miscellaneous": misc,
                 "Unused Location": unused,
                 "No Interior": no_interior,
-                "Street Names": street
+                "Roads": street
             }
             L.control.layers(baseMaps, overlayMaps).addTo(map);
             L.control.mousePosition().addTo(map);
