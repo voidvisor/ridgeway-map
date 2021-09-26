@@ -290,7 +290,7 @@
                 .bindPopup(`<h1>Palmer Apartments</h1><img src="https://drive.google.com/uc?export=view&id=1e7Npl8J3wurha9cPO5mkkPxcR4e0lkN4" width="100%" max-width="300px"><p>Although marked as a residential property, no apartments can currently be rented here.</p><i>3100 Rucker Ave</i>`)
                 .addTo(no_interior);
             L.marker([-80.2, -151.5], {icon: houseIcon})
-                .bindPopup(`<h1>Palmer Condos</h1><img src="https://drive.google.com/uc?export=view&id=1IQc80Tt1U3OE29f8vq8I7v6CXOh3sN-o" width="100%" max-width="300px"><p>Features 4 rentable Condos (1A; 1B; 2A; 2B). Has 3 parking spots for residents.<h2>Housing requires the Housing Gamepass which costs 1000 R$.</h2>The rent for all properties is 4500$ per week. Rent resets at midnight UTC on the day that your rent is due.</p><i>200 Farley St</i>`)
+                .bindPopup(`<h1>Palmer Condos</h1><img src="https://drive.google.com/uc?export=view&id=1IQc80Tt1U3OE29f8vq8I7v6CXOh3sN-o" width="100%" max-width="300px"><p>Features 4 rentable Condos (1A; 1B; 2A; 2B). Has 3 parking spots for residents.<h2>Housing requires the Housing Gamepass which costs 1000 R$.</h2>The rent for these properties is 4500$ per week. Rent resets at midnight UTC on the day that your rent is due.</p><i>200 Farley St</i>`)
                 .addTo(housing);
             L.marker([70, -189], {icon: copIcon})
                 .bindPopup(`<h1>Ridgeway County Sheriff's Office Substation</h1><img src="https://drive.google.com/uc?export=view&id=1B0yp3YNnURmxPuG1f3ZvO6x0ZVR5uuxq" width="100%" max-width="300px"><p>A substation for the Ridgeway County Sheriff's Office. Rarely used as deputies do not spawn here. You can come here to search arrest and citation records as well as pay off your citations. Note that if you do not pay your citation within 30 minutes, this will result in an arrest warrant being issued for you.</p>`)
@@ -350,16 +350,16 @@
                 .bindPopup(`<h1>Wood Farms</h1><img src="https://drive.google.com/uc?export=view&id=1JoeopnHtvTiN-vHLqWEbNwsO9ZMlWwl_" width="100%" max-width="300px"><p>Private property owned by goodguywood.</p>`)
                 .addTo(territory);
             L.polygon([[71.8, -176.8], [67.6, -176.8], [63.9, -175.8], [57.9, -175.8], [54.9, -176.2], [51.6, -176.2], [51.6, -171.4], [53.8, -163.5], [72.8, -165], [74.5, -164.8], [75.3, -167.8], [75.2, -172.5], [74.5, -175.7], [72.5, -175.7]], {color:"DarkViolet", opacity: "0.5", pane: "markerPane"})
-                .bindPopup(`<h1>Sterling Residential Zone</h1><p>Has a total of 31 rentable houses.<br><h2>Housing requires the Housing Gamepass which costs 1000 R$.</h2>The rent for all properties is 4500$ per week. Rent resets at midnight UTC on the day that your rent is due.</p>`)
+                .bindPopup(`<h1>Sterling Residential Zone</h1><p>Has a total of 31 rentable houses.<br><h2>Housing requires the Housing Gamepass which costs 1000 R$.</h2>The rent for these properties is 3500$ per week. Rent resets at midnight UTC on the day that your rent is due.</p>`)
                 .addTo(housing);
             L.marker([-45, 162.7], {icon: gasIcon})
-                .bindPopup(`<h1>Milton Gas Station</h1><img src="https://drive.google.com/uc?export=view&id=1sAjPIYU5HhAnyLra0jTVtidjTb4Zj4i0" width="100%" max-width="300px"><p>Contains 4 pumps and an ATM. One of the four gas stations in Ridgeway County.</p>`)
+                .bindPopup(`<h1>Cyrus Acres Gas Station</h1><img src="https://drive.google.com/uc?export=view&id=1BVGO94vAvdzmNO0BwjCBq11DQVTRJBAW" width="100%" max-width="300px"><p>Contains 4 pumps and an ATM. One of the four gas stations in Ridgeway County.</p>`)
                 .addTo(gas_station);
             L.polygon([[77.2, 27.3], [74.9, 20.2], [73.9, 22.7], [71.8, 31.5], [70.3, 39.3], [67.7, 54.4], [65.5, 60.4], [62.8, 63], [57.4, 63.7], [47.3, 65.2], [41, 70.6], [38.3, 80.5], [37.8, 85], [37.8, 97.2], [36, 109.5], [29.8, 122.7], [19.3, 132.5], [9.9, 136.8], [-0.5, 138.7], [-23.5, 139], [-26.3, 161.2], [-24, 175.5], [-22.4, 177.5], [-17.5, 181], [-3, 182.6], [14, 179.7], [27, 173.5], [38.7, 177.7], [44.7, 189.7], [53.9, 195.6], [59.5, 193.5], [63, 190.5], [64.7, 181.7], [68.4, 171], [68.8, 165.5], [67.3, 160.9], [66.6, 150.7], [66.5, 136.5], [64, 122.7], [60, 112.5], [58.7, 91.7], [66.4, 74.6], [70.5, 70.8]], {color: "green", opacity: "0.5"})
                 .bindPopup(`<h1>Ridgeway County Wildlife Reserve</h1><p>Inside the wildlife reserve a small mountain and waterfall can be found. The Ridgeway Park Service Ranger station is located here along with the Rideway Parks Visitor Center.</p>`)
                 .addTo(territory);
             L.polygon([[12.5, -67], [21.7, -84.5], [21.7, -92.8], [20.2, -98.4], [17.6, -101.8], [14.3, -104.1], [10.6, -105], [-12.1, -105.3], [-23.3, -98.5], [-24.7, -98.5], [-24.7, -87.9], [-31.2, -79.6], [-25.2, -67.5], [-17.2, -59.2], [-2.4, -56.8], [12.9, -58]], {color: "DodgerBlue", opacity: "0.5"})
-                .bindPopup(`<h1>Oakland Park Residential Zone</h1><p>Has a total of 31 rentable mansions.<br><h2>Housing requires the Housing Gamepass which costs 1000 R$.</h2>The rent for all properties is 4500$ per week. Rent resets at midnight UTC on the day that your rent is due.</p>`)
+                .bindPopup(`<h1>Oakland Park Residential Zone</h1><p>Has a total of 31 rentable mansions.<br><h2>Housing requires the Housing Gamepass which costs 1000 R$.</h2>The rent for these properties is 4500$ per week. Rent resets at midnight UTC on the day that your rent is due.</p>`)
                 .addTo(housing);
             L.polygon([[30.7, -129.2], [31.2, -117.2], [33.6, -105.7], [37.8, -93], [43.1, -82.7], [49.7, -75.9], [63.2, -85.6], [68.1, -97.6], [67.3, -110.6], [65.6, -121.3], [61.8, -130.2], [57.8, -135.5], [49.2, -137], [39.7, -130.2]], {color: "red", opacity: "0.5"})
                 .bindPopup(`<h1>Military Exclusion Zone</h1><p>The Military exclusion zone is home to the Ridgeway National Guard Base.<br><b>Civillians must keep on the paved road, not drive faster than 50 SPS and slower than 30 SPS.</b></p>`)
@@ -427,9 +427,9 @@
             L.marker([-68.14, -96.24], {icon: parkingIcon})
                 .bindPopup(`<h1>Palmer International Airport Parking Lot</h1><img src="https://drive.google.com/uc?export=view&id=17NriWEpDF7Ovu3CSgq0VGv9ncHDoz3Cs" width="100%" max-width="300px"><p>A parking lot near the Palmer International Airport with 74 parking spots.</p>`)
                 .addTo(parking);
-            L.marker([-44.15, 152.31], {icon: noIcon})
-                .bindPopup(`<h1>Trailer Park</h1><img src="https://drive.google.com/uc?export=view&id=1HxHIEAHzFtxp2YHVdvlWQtlxr2oWYxIZ" width="100%" max-width="300px"><p>An unfinished trailer park probably realeasing in a future update.</p>`)
-                .addTo(no_interior);
+            L.marker([-44.15, 152.31], {icon: houseIcon})
+                .bindPopup(`<h1>Cyrus Acres Trailer Park</h1><img src="https://drive.google.com/uc?export=view&id=12fjbCLZNvYxIJFPXRgheqv8YrHWwVMq2" width="100%" max-width="300px"><p>Has a total of 15 rentable mobile homes.<br><h2>Housing requires the Housing Gamepass which costs 1000 R$.</h2>The rent for these properties is 3500$ per week. Rent resets at midnight UTC on the day that your rent is due.</p>`)
+                .addTo(housing);
             L.marker([-8.18, -81.65], {icon: picnicIcon})
                 .bindPopup(`<h1>Oakland Park Picnic Spot</h1><img src="https://drive.google.com/uc?export=view&id=15stZLq8sZL4AzjsIA27lnDP9z3t3iv5y" width="100%" max-width="300px"><p>Come and have a sandwich with your friends. Has 2 picnic tables and a great view of Oakland Park.</p>`)
                 .addTo(picnic);
