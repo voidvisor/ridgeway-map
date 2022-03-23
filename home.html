@@ -42,15 +42,45 @@
             #export {
                 top:90px;
             }
+            #overlay {
+                position: fixed;
+                display: block;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: rgba(0,0,0,0.5);
+                z-index: 1000;
+                cursor: pointer;
+            }
+            #overlay-text {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                color:white;
+                transform: translate(-50%,-50%);
+                -ms-transform: translate(-50%,-50%);
+                text-align: center;
+            }
+            #overlay-text-small {
+                color:white;
+                font-size: 25px;
+            }
         </style>
     </head>
     <body>
+        <div id="overlay" onclick="off()"><h1 id="overlay-text">Attention! map.ridgeway.cf will be shutting down on the 1st of April 2022!<br>Thank, you, for using this service. - voidvisor<p id="overlay-text-small"><i>click to continue to map</i></p></h1></div>
         <div id = "map"></div>
         <!--disable below
         <div id='delete'>Delete Features</div>
         <a href='#' id='export'>Export Features</a>
         -->
         <script>
+            function off() {
+            document.getElementById("overlay").style.display = "none";
+            }
             var imageUrl = 'https://drive.google.com/uc?export=view&id=1eRSqxe38p0LcrxehNRx5JvzQtya-nUyA',
             imageBounds = [[90.0, -234.0702211], [-90.0, 234.0702211]];
             var backgroundImage = L.imageOverlay(imageUrl, imageBounds, {
